@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>拖拽</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+body{font:12px Verdana, Arial, "宋体", sans-serif;}
+h1{font-size: 18px;font-family: 微软雅黑;font-weight:normal;}
+h3{margin: 0;font-size: 14px;font-family: 微软雅黑;font-weight:normal;}
+p{clear:both;}
+.author{position:fixed;_position: absolute;right:20px;top:20px;}
+ul{clear:both;float: left;}
+/*格子拖放*/
+.grid li{float: left;list-style: none;width: 98px;height: 86px;border: 1px solid #ccc;background: #eee;margin: 5px;padding: 1px;-moz-user-select:none;text-align:center;}
+
+.grid img{width:98px;height: 68px;padding-bottom:4px;}
+.grid div{position: relative;}
+.grid span{position: absolute;right:1px;top:75%;color: #fff;}
+/*交换数据用的DIV*/
+#tempBox{position: absolute;z-index:9999;}
+/*单个拖放demo*/
+/*#test{clear:both;width: 500px;margin: 30px;padding: 10px;line-height: 24px;background: #ccc;}*/
+</style>
+<script type="text/javascript" src="js/jq1.6.1.js"></script> 
+</head>
+<body>
+	<div style="padding:50px;">
+  <div style="width:68%;float:right;">
+        <h2>
+        <a href="javascript:void(0);" onclick="addRow()" >添加一行</a>&nbsp;&nbsp;
+        </h2>
+        
+        <div id="item">
+        
+          <ul class="drop grid" id="g1">
+                <li></li>
+                <li></li>
+          </ul>
+    
+        </div>
+    </div>
+
+    
+    <div style="width:225px;float:left;">
+        <h2>已选中网站</h2>
+        <ul class="drag grid">
+            <li id="1"><div>测试1</div>
+          </li>
+            <li id="2"><div><img src="expotclogo.gif" alt="" width="100" height="45" title="" />腾讯</div>
+          </li>
+            <li id="3"><div><img src="logo_home.gif" alt="" title="" />新浪</div>
+          </li>
+            <li id="4"><div><img src="logo_cn.gif" alt="" title="" />谷歌</div>
+          </li>
+        </ul>
+    </div>
+ 
+ 	</div>
+	<script type="text/javascript">
+	var r=null;
+	window.onload=function()
+	{
+		r=document.getElementById('item').innerHTML;
+		startDrag();
+	}
+
+	function addRow() {//添加一行
+		var obj=document.getElementById('item');
+		obj.innerHTML=obj.innerHTML+r;
+		startDrag();
+	}
+	
+ 
+	function startDrag()
+	{
+		//.drag li 里面的元素对应的放置位置是 .drop li, 完成后回调change函数,默认限制拖动范围是窗口内部
+		$('.drag li').Drag({drop:'.drop li,.drag li',finish:change});
+		//.drag li 里面的元素对应的放置位置是 .drop li和.drag li(自身), 完成后回调change函数,默认限制拖动范围是窗口内部
+		$('.drop li').Drag({drop:'.drop li, .drag li',finish:change});
+		//document.getElementById('ravl').value=document.getElementById('item').innerHTML;
+	}
+	<!--
+	//拖放插件DragDrop
+	$.fn.Drag=function (options) {
+		var defaults={
+			limit : window,//是否限制拖放范围,默认限制当前窗口内
+			drop:false,//是否drop
+			handle:false,//拖动手柄
+			finish:function () {}//回调函数
+		};
+		var options=$.extend(defaults,options);
+		this.X=0;//初始位置
+		this.Y=0;
+		this.dx=0;//位置差值
+		this.dy=0;
+		var This=this;
+		var ThisO=$(this);//被拖目标
+		var thatO;
+		if (options.drop) {
+			var ThatO=$(options.drop);//可放下位置
+			ThisO.find('div').css({cursor:'move'});
+			var tempBox=$('<div id="tempBox" class="grid"></div>');
+		}else {
+			options.handle ? ThisO.find(options.handle).css({cursor:'move','-moz-user-select':'none'}) : ThisO.css({cursor:'move','-moz-user-select':'none'});
+		}
+		//拖动开始
+		this.dragStart=function (e) {
+			var cX=e.pageX;
+			var cY=e.pageY;
+			if (options.drop) {
+				ThisO=$(this);
+				if (ThisO.find('div').length!=1) {return}//如果没有拖动对象就返回
+				This.X=ThisO.find('div').offset().left;
+				This.Y=ThisO.find('div').offset().top;
+				tempBox.html(ThisO.html());
+				//ThisO.html('');
+				$('body').append(tempBox);
+				tempBox.css({left:This.X,top:This.Y});
+			}else {
+				This.X=ThisO.offset().left;
+				This.Y=ThisO.offset().top;
+				ThisO.css({margin:0})
+			}
+			This.dx=cX-This.X;
+			This.dy=cY-This.Y;
+			if (!options.drop) {ThisO.css({position:'absolute',left:This.X,top:This.Y})}
+			$(document).mousemove(This.dragMove);
+			$(document).mouseup(This.dragStop);
+			if ($.browser.msie) {ThisO[0].setCapture();}//IE,鼠标移到窗口外面也能释放
+		}
+		//拖动中
+		this.dragMove=function (e) {
+			var cX=e.pageX;
+			var cY=e.pageY;
+			if (options.limit) {//限制拖动范围
+				
+				//容器的尺寸
+				var L=$(options.limit)[0].offsetLeft ? $(options.limit).offset().left : 0;
+				var T=$(options.limit)[0].offsetTop ? $(options.limit).offset().top : 0;
+				var R=L+$(options.limit).width();
+				var B=T+$(options.limit).height();
+				//获取拖动范围
+				var iLeft=cX-This.dx, iTop=cY-This.dy;
+				//获取超出长度
+				var iRight=iLeft+parseInt(ThisO.innerWidth())-R, iBottom=iTop+parseInt(ThisO.innerHeight())-B;
+				//alert($(window).height())
+				//先设置右下, 再设置左上
+				if(iRight > 0) iLeft -= iRight;
+					
+				if(iBottom > 0) iTop -= iBottom;
+				if(L > iLeft) iLeft = L;
+				if(T > iTop) iTop = T;
+				if (options.drop) {
+					tempBox.css({left:iLeft,top:iTop})
+				}else {
+					ThisO.css({left : iLeft,top : iTop})
+				}
+			}else {
+				//不限制范围
+				if (options.drop) {
+					tempBox.css({left:cX-This.dx,top:cY-This.dy})
+				}else {
+					ThisO.css({left:cX-This.dx,top:cY-This.dy});
+				}
+			}
+			
+		}
+		//拖动结束
+		this.dragStop=function (e) {
+			if (options.drop) {
+				var flag=false;
+				var cX=e.pageX;
+				var cY=e.pageY;
+				var oLf=ThisO.offset().left;
+				
+				var oRt=oLf+ThisO.width();
+				var oTp=ThisO.offset().top;
+				var oBt=oTp+ThisO.height();
+
+				if (!(cX>oLf && cX<oRt && cY>oTp && cY<oBt)) {//如果不是在原位
+					for (var i=0; i<ThatO.length; i++) {
+						var XL=$(ThatO[i]).offset().left;
+						var XR=XL+$(ThatO[i]).width();
+						var YL=$(ThatO[i]).offset().top;
+						var YR=YL+$(ThatO[i]).height();
+						if (XL<cX && cX<XR && YL<cY && cY<YR) {//找到拖放目标 交换位置
+							var newElm=$(ThatO[i]).html();
+							$(ThatO[i]).html(tempBox.html());
+							//ThisO.html(newElm);
+							thatO=$(ThatO[i]);
+							tempBox.remove();
+							flag=true;
+							break;//一旦找到 就终止循环
+						}
+					}
+				}
+				if (!flag) {//如果找不到拖放位置,归回原位
+					tempBox.css({left:This.X,top:This.Y});
+					ThisO.html(tempBox.html());
+					tempBox.remove();
+				}
+			}
+			$(document).unbind('mousemove');
+			$(document).unbind('mouseup');
+			options.finish(e,ThisO,thatO);
+			if ($.browser.msie) {ThisO[0].releaseCapture();}
+		}
+		//绑定拖动
+		options.handle ? ThisO.find(options.handle).mousedown(This.dragStart) : ThisO.mousedown(This.dragStart);
+		
+		//IE禁止选中文本
+		//document.body.onselectstart=function(){return false;}
+	}
+	//下面是例子
+	//.drag li 里面的元素对应的放置位置是 .drop li, 完成后回调change函数,默认限制拖动范围是窗口内部
+	//$('.drag li').Drag({drop:'.drop li',finish:change});
+	//.drag li 里面的元素对应的放置位置是 .drop li和.drag li(自身), 完成后回调change函数,默认限制拖动范围是窗口内部
+	//$('.drop li').Drag({drop:'.drop li, .drag li',finish:change});
+	//$('#test').Drag({handle:'h2',finish:change});//不限制拖动范围 可设置limit:false
+	var change=function (e,oldElm,newElm) {
+		//alert(newElm)
+	}
+	//-->
+	</script>
+</body>
+</html>
