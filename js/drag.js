@@ -1,9 +1,7 @@
 // JavaScript Document
-$(document).ready(function(){
-	//IE6-9
-document.body.onselectstart = document.body.ondrag = function(){
-return false;
-}
+
+//IE6-9
+document.body.onselectstart = document.body.ondrag = function(){return false;}
 var r=null;
 	window.onload=function()
 	{
@@ -11,12 +9,20 @@ var r=null;
 		startDrag();
 	}
 
-	function addRow() {//添加一行
+	function addRowa() {//添加一行
 	//	var obj=document.getElementById('item');
 	//	obj.innerHTML=obj.innerHTML+r;
 		startDrag();
 	}
-	
+	function addrow(){
+		var lisize = $("#rows").children("li").length;
+		if(lisize<=10){
+			$("#rows").append("<li onClick='li("+(lisize+1)+")' class='pd"+(lisize+1)+"'></li>");
+			startDrag();
+		}else{
+			alert("超出最大行数");
+		}
+	}
  
 	function startDrag()
 	{
@@ -45,7 +51,7 @@ var r=null;
 		var thatO;
 		if (options.drop) {
 			var ThatO=$(options.drop);//可放下位置
-			ThisO.find('div').css({cursor:'move'});
+			ThisO.find('div').css({cursor:'pointer'});
 			var tempBox=$('<div id="tempBox" class="grid"></div>');
 		}else {
 			options.handle ? ThisO.find(options.handle).css({cursor:'move','-moz-user-select':'none'}) : ThisO.css({cursor:'move','-moz-user-select':'none'});
@@ -85,7 +91,9 @@ var r=null;
 				var L=$(options.limit)[0].offsetLeft ? $(options.limit).offset().left : 0;
 				var T=$(options.limit)[0].offsetTop ? $(options.limit).offset().top : 0;
 				var R=L+$(options.limit).width();
-				var B=T+$(options.limit).height();
+//				var B=T+$(options.limit).height();
+				var B=document.body.scrollHeight;//网页可见区域高度
+
 				//获取拖动范围
 				var iLeft=cX-This.dx, iTop=cY-This.dy;
 				//获取超出长度
@@ -165,7 +173,6 @@ var r=null;
 	//$('.drop li').Drag({drop:'.drop li, .drag li',finish:change});
 	//$('#test').Drag({handle:'h2',finish:change});//不限制拖动范围 可设置limit:false
 	var change=function (e,oldElm,newElm) {
-		//alert(newElm)
+		
 	}
 	//-->
-});

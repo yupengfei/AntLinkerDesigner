@@ -4,17 +4,15 @@
 <meta charset="utf-8">
 <title>无标题文档</title>
 <script src="js/jq1.6.1.js"></script>
-<script src="js/drag.js"></script>
+<script src="js/handle.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-
 </head>
-
 <body>
 <div class="all">
     <div class="top">
         <ul>
             <li><img src="img/storage.png"><h3>存储</h3></li>
-            <li><img src="img/addbtn.png"><h3>添加一行</h3></li>
+            <li onClick="addrow()"><img src="img/addbtn.png"><h3>添加一行</h3></li>
             <li><img src="img/see.png"><h3>浏览</h3></li>
             <li><img src="img/quitimg.png"><h3>退出</h3></li>
         </ul>
@@ -22,17 +20,25 @@
     <div class="content">
     	<div class="leftdiv">
         	<ul class="drag grid">
-            	<li id="1"><div>测试1</div></li>
-                <li id="2"><div>测试2</div></li>
-                <li id="3"><div>测试3</div></li>
-                <li id="4"><div>测试4</div></li>
+            	<li id="1"><div><p id="jp" onClick="s()">纯文本</p></div></li>
+                <li id="2"><div>单选左<img src="img/choicey.png"></div></li>
+                <li id="3"><div><img src="img/choicey.png">单选右</div></li>
+                <li id="4"><div>多选左<img src="img/choicesel.png"></div></li>
+                <li id="5"><div><img src="img/choicesel.png">多选右</div></li>
+                <li id="6"><div>开关左<img src="img/longbtny.png"></div></li>
+                <li id="7"><div><img src="img/parkimg.png">开关右</div></li>
+                <li id="8"><div>下拉列表左<img src="img/lowerbtn2.png"></div></li>
+                <li id="9"><div><img src="img/lowerbtn2.png">下拉列表右</div></li>
+                <li id="10"><div>功能键<img src="img/search.png"></div></li>
+                <li id="11"><div>单行文本输入<img src="img/inputimg1.png"></div></li>
+                <li id="12"><div>多行文本输入<img src="img/inputsel1.png" class="mar20"></div></li>
+                <li id="12"><div>文本显示列表<img src="img/文本列表.png" class="mar20"></div></li>
             </ul>
         </div>
         <div class="rightdiv">
         	<div class="condiv">
-                <ul class="drop grid">
-                    <li></li>
-                    <li></li>
+                <ul id="rows" class="drop grid">
+
 				</ul>
             </div>
             <div class="rigdiv">
@@ -111,3 +117,4 @@
 </script>
 </body>
 </html>
+<script src="js/drag.js"></script>
