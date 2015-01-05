@@ -111,7 +111,10 @@ vertical-align: middle;
 	text-align:center;
 	border:1px solid #FFF;
 	border-bottom:1px solid #C8C8C8;
-
+}
+.condiv ul li div{
+	width:30%;
+	float:left;
 }
 .rig{
 	width:98%;

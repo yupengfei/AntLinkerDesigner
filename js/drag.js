@@ -49,17 +49,21 @@ var r=null;
 		var This=this;
 		var ThisO=$(this);//被拖目标
 		var thatO;
+		
 		if (options.drop) {
 			var ThatO=$(options.drop);//可放下位置
 			ThisO.find('div').css({cursor:'pointer'});
+			
 			var tempBox=$('<div id="tempBox" class="grid"></div>');
 		}else {
 			options.handle ? ThisO.find(options.handle).css({cursor:'move','-moz-user-select':'none'}) : ThisO.css({cursor:'move','-moz-user-select':'none'});
 		}
 		//拖动开始
+		
 		this.dragStart=function (e) {
 			var cX=e.pageX;
 			var cY=e.pageY;
+			var date = new Date().getTime();
 			if (options.drop) {
 				ThisO=$(this);
 				if (ThisO.find('div').length!=1) {return}//如果没有拖动对象就返回
@@ -130,19 +134,30 @@ var r=null;
 				var oRt=oLf+ThisO.width();
 				var oTp=ThisO.offset().top;
 				var oBt=oTp+ThisO.height();
-
+//				var date = new Date().getTime();
 				if (!(cX>oLf && cX<oRt && cY>oTp && cY<oBt)) {//如果不是在原位
 					for (var i=0; i<ThatO.length; i++) {
 						var XL=$(ThatO[i]).offset().left;
 						var XR=XL+$(ThatO[i]).width();
 						var YL=$(ThatO[i]).offset().top;
 						var YR=YL+$(ThatO[i]).height();
+						
 						if (XL<cX && cX<XR && YL<cY && cY<YR) {//找到拖放目标 交换位置
 							var newElm=$(ThatO[i]).html();
-							$(ThatO[i]).html(tempBox.html());
+							//$(ThatO[i]).html(tempBox.html());
+							//alert(tempBox.html());
+							
+							//jsq(sj);
+							//alert($(ThatO[i]).attr('class'));
+							//alert(tempBox.attr('class'));
+							//tempBox.attr("class","d"+date);
+							if($(ThatO[i]).html().indexOf(tempBox.html())<0){
+								$(ThatO[i]).append(tempBox.html());
+							}
+							
 							//ThisO.html(newElm);
 							thatO=$(ThatO[i]);
-							tempBox.remove();
+							tempBox.remove();//取消显示漂浮层
 							flag=true;
 							break;//一旦找到 就终止循环
 						}
@@ -176,3 +191,10 @@ var r=null;
 		
 	}
 	//-->
+	
+function isok(date){
+	var s = date;
+	var date1=new Date();  //开始时间
+	var date3=s.getTime()-date1.getTime()  //时间差的毫秒数
+	alert(date3);
+}
