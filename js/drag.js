@@ -162,17 +162,21 @@ var r=null;
 								if(typeof(getclass) == "undefined"){
 									$(ThatO[i]).append(tempBox.html());
 									var date = new Date().getTime()+"";
-									$(ThatO[i]).children().addClass(date);
+									$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
+									$(ThatO[i]).children().last().addClass(date);
+
 								}else{
+									var getclasslength = getclass.length;
 									var date = new Date().getTime()+"";
-									getclass = getclass.substr(0,13);
-									date = date.substr(0,13);
+									var datelength = date.length;
+									getclass = getclass.substr(getclasslength-6,getclasslength);
+									date = date.substr(datelength-6,datelength);
 									var s = date - getclass;
-									//alert(s);
 									if(s>1000){
 										$(ThatO[i]).append(tempBox.html());
 										var date = new Date().getTime()+"";
-										$(ThatO[i]).children().addClass(date);
+										$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
+										$(ThatO[i]).children().last().addClass(date);
 									}
 								}
 

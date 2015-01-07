@@ -114,7 +114,9 @@ vertical-align: middle;
 }
 .condiv ul li div{
 	width:30%;
+	height:78px;
 	float:left;
+	border:1px solid #FFF;
 }
 .rig{
 	width:98%;
@@ -128,6 +130,7 @@ vertical-align: middle;
 	color:#191919;
 	font-size:20px;
 	border-bottom:1px solid #B8B8B8;
+	display:none;
 }
 .item{
 	float:left;
