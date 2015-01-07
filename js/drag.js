@@ -144,6 +144,10 @@ var r=null;
 						
 						if (XL<cX && cX<XR && YL<cY && cY<YR) {//找到拖放目标 交换位置
 							var newElm=$(ThatO[i]).html();
+							
+							$(ThatO[i]).css("border","1px solid #FFF");
+							$(ThatO[i]).css("border-bottom","1px solid #C8C8C8");
+			//重置边框颜色
 							//$(ThatO[i]).html(tempBox.html());
 							//alert(tempBox.html());
 							
@@ -151,9 +155,28 @@ var r=null;
 							//alert($(ThatO[i]).attr('class'));
 							//alert(tempBox.attr('class'));
 							//tempBox.attr("class","d"+date);
-							if($(ThatO[i]).html().indexOf(tempBox.html())<0){
-								$(ThatO[i]).append(tempBox.html());
-							}
+							
+							//if($(ThatO[i]).html().indexOf(tempBox.html())<0){
+								var getclass = $(ThatO[i]).children().last().attr("class");
+								//alert(getclass);
+								if(typeof(getclass) == "undefined"){
+									$(ThatO[i]).append(tempBox.html());
+									var date = new Date().getTime()+"";
+									$(ThatO[i]).children().addClass(date);
+								}else{
+									var date = new Date().getTime()+"";
+									getclass = getclass.substr(0,13);
+									date = date.substr(0,13);
+									var s = date - getclass;
+									//alert(s);
+									if(s>1000){
+										$(ThatO[i]).append(tempBox.html());
+										var date = new Date().getTime()+"";
+										$(ThatO[i]).children().addClass(date);
+									}
+								}
+
+							//}
 							
 							//ThisO.html(newElm);
 							thatO=$(ThatO[i]);

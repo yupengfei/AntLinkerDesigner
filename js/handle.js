@@ -1,6 +1,3 @@
-function s(){
-	alert("s");
-}
 function li(size){
 	var obj = $(".pd"+size);
 	var lihtml = obj.html();
@@ -14,4 +11,11 @@ function li(size){
 			obj.css("border-bottom","1px solid #C8C8C8");
 		}
 	}
+}
+function hold(){
+	var condiv = $("#rows").html();
+	alert(condiv);
+}
+function s(isthis){
+	alert($("#rows li #"+isthis).html());
 }
