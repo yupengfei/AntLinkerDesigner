@@ -1,18 +1,24 @@
 function li(size){
 	var obj = $(".pd"+size);
 	var lihtml = obj.html();
+	//重置所有名为xz的div
+	$("#rows li div").removeClass("xz");
 	if(lihtml==""){
 		var objBorCor = obj.css("border-bottom-color");
 		if(objBorCor=="rgb(200, 200, 200)"){
 			$("#rows li").css("border","1px solid #FFF");
 			$("#rows li").css("border-bottom","1px solid #C8C8C8");
 			obj.css("border","1px solid #000");
+			//重置所有名为xzli的class
+			$("#rows li").removeClass("xzli");
+			obj.addClass("xzli");
 //			$("#name").show(500);
 			restore();
 		}
 		else if(objBorCor=="rgb(0, 0, 0)"){
 			obj.css("border","1px solid #FFF");
 			obj.css("border-bottom","1px solid #C8C8C8");
+			obj.removeClass("xzli");
 //			$("#name").hide(500);
 			//保存方法
 			
@@ -36,18 +42,24 @@ function s(isthis){
 	alert(clikid);*/
 	//格式化所有元素的边框
 	$("#rows li div").css("border","1px solid #fff");
+	//重置所有名为xzli的li
+	$("#rows li").removeClass("xzli");
 	if(clikborcolor == "rgb(255, 255, 255)")
 	{
 		$(clik).css("border","1px solid #000");
+		//重置所有名为xz的class
+		$("#rows li div").removeClass("xz");
+		$(clik).addClass("xz");
 	}else if(clikborcolor == "rgb(0, 0, 0)"){
 		$(clik).css("border","1px solid #fff");
+		$(clik).removeClass("xz");
 		fhide();//隐藏右侧元素
 		return;
 	}
 	fhide();//隐藏右侧元素
 	//重置表单内文本框
 	restore();
-	var sdate = 500;
+	var sdate = 200;
 	//纯文本
 	if(clikid == "text"){
 		$("#size").show(sdate);
@@ -156,10 +168,42 @@ function restore(){
 }
 //右侧表单全部隐藏
 function fhide(){
-	$(".box").hide(500);
+	$(".box").hide(200);
 }
-
-
-
+//设置元素宽度
+function swidth(width){
+	if(width == '100'){
+		var sibwidth = $(".xz").siblings().width();
+		if(sibwidth==null){
+			$(".xz").animate({width:'596px'});
+		}else{
+			alert("设置的宽度超过总宽度");
+		}
+	}else if(width == '50'){
+		var siblength = $(".xz").siblings().length;
+		if(siblength <= 1){
+			$(".xz").animate({width:'296px'});
+		}else{
+			alert("设置的宽度超过总宽度");
+		}
+	}else{
+		$(".xz").animate({width:'197px'});
+	}
+}
+//删除元素
+function del(){
+	var xz = $(".xz").html();
+	if(xz != null)
+	{
+		$(".xz").hide(500,function(){
+			$(".xz").remove();
+		})
+	}else{
+		$(".xzli").hide(500,function(){
+			$(".xzli").remove();
+		})
+	}
+	fhide();
+}
 
 

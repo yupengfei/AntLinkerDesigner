@@ -11,6 +11,9 @@ function imgdragstart(){return false;}
 </script>
 </head>
 <body>
+<div class="hide">
+	<div class="lisize"></div>
+</div>
 <div class="all">
     <div class="top">
         <ul>
@@ -51,9 +54,9 @@ function imgdragstart(){return false;}
                 	<div class="box" id="size">
                     	<label class="item" for="name">size</label>
                         <label class="itlab">
-                            <label><img class="iptimg" src="img/choicey.png">100%</label>
-                            <label><img class="iptimg" src="img/choicen.png">50%</label>
-                            <label><img class="iptimg" src="img/choicen.png">1/3%</label>
+                            <label><img class="iptimg" onClick="swidth('100')" src="img/choicey.png">100%</label>
+                            <label><img class="iptimg" onClick="swidth('50')" src="img/choicen.png">50%</label>
+                            <label><img class="iptimg" onClick="swidth('30')" src="img/choicen.png">1/3%</label>
                         </label>
                     </div>
                     <div class="box" id="label">
@@ -101,7 +104,7 @@ function imgdragstart(){return false;}
                         	<input class="ipt" id="maxlengthinp" type="text"></label>
                         </label>
                     </div>
-                    <img src="img/delbtn.png" class="delbut" onClick="fhide()">
+                    <img src="img/delbtn.png" class="delbut" onClick="del()">
                 </div>
             </div>
         </div>

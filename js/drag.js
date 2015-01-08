@@ -15,9 +15,15 @@ var r=null;
 		startDrag();
 	}
 	function addrow(){
-		var lisize = $("#rows").children("li").length;
-		if(lisize<=10){
+		if($(".hide .lisize").html()=="")
+		{
+			var lisize = $("#rows").children("li").length;
+		}else{
+			var lisize = $(".hide .lisize").html()*1;
+		}
+		if($("#rows").children("li").length<=10){
 			$("#rows").append("<li onClick='li("+(lisize+1)+")' class='pd"+(lisize+1)+"'></li>");
+			$(".hide .lisize").html(lisize+1);
 			startDrag();
 		}else{
 			alert("超出最大行数");
@@ -169,6 +175,10 @@ var r=null;
 									var getclasslength = getclass.length;
 									var date = new Date().getTime()+"";
 									var datelength = date.length;
+									if(getclasslength>datelength){
+										getclass = getclass.substr(0,getclasslength-3);
+									}
+									getclasslength = getclass.length;
 									getclass = getclass.substr(getclasslength-6,getclasslength);
 									date = date.substr(datelength-6,datelength);
 									var s = date - getclass;
@@ -218,10 +228,3 @@ var r=null;
 		
 	}
 	//-->
-	
-function isok(date){
-	var s = date;
-	var date1=new Date();  //开始时间
-	var date3=s.getTime()-date1.getTime()  //时间差的毫秒数
-	alert(date3);
-}
