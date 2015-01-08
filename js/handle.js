@@ -1,9 +1,9 @@
 function li(size){
 	var obj = $(".pd"+size);
 	var lihtml = obj.html();
-	//重置所有名为xz的div
-	$("#rows li div").removeClass("xz");
 	if(lihtml==""){
+		$("#rows li div").css("border","1px solid #FFF");
+		$("#rows li div").removeClass("xz");
 		var objBorCor = obj.css("border-bottom-color");
 		if(objBorCor=="rgb(200, 200, 200)"){
 			$("#rows li").css("border","1px solid #FFF");
@@ -30,7 +30,7 @@ function li(size){
 }
 function hold(){
 	var condiv = $("#rows").html();
-	alert(condiv);
+	$(".viewDiv").html(condiv).unbind("onclick");
 }
 function s(isthis){
 	var clik = "#rows li ."+isthis;//被选中元素的class
@@ -42,7 +42,9 @@ function s(isthis){
 	alert(clikid);*/
 	//格式化所有元素的边框
 	$("#rows li div").css("border","1px solid #fff");
-	//重置所有名为xzli的li
+	//格式化父层li的边框
+	$("#rows li").css("border","1px solid #FFF");
+	$("#rows li").css("border-bottom","1px solid #C8C8C8");
 	$("#rows li").removeClass("xzli");
 	if(clikborcolor == "rgb(255, 255, 255)")
 	{
@@ -150,7 +152,12 @@ $(document).ready(function(){
 			$(this).attr("src","img/choicey.png");
 		}
 		
-	})
+	});
+	var bodyhei = $(window).height();
+	var bodywid = $(window).width();
+	$(".viewDiv").css("top",(bodyhei/2)-(890/2)+"px");
+	$(".viewDiv").css("left",(bodywid/2)-(600/2)+"px");
+
 })
 //重置右侧表单
 function restore(){
