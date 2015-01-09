@@ -149,7 +149,9 @@ $(document).ready(function(){
 		var srcurl = $(this).attr("src");//得到路径地址
 		if(srcurl=="img/choicen.png"){
 			$(this).parent().siblings("label").children().attr("src","img/choicen.png");
+			$(this).parent().siblings("label").children().removeClass("xzimg");
 			$(this).attr("src","img/choicey.png");
+			$(this).addClass("xzimg");
 		}
 		
 	});
@@ -178,7 +180,7 @@ function fhide(){
 	$(".box").hide(200);
 }
 //设置元素宽度
-function swidth(width){
+function ssize(width){
 	if(width == '100'){
 		var sibwidth = $(".xz").siblings().width();
 		if(sibwidth==null){
@@ -212,5 +214,86 @@ function del(){
 	}
 	fhide();
 }
-
-
+//得到选择的单选框
+function getStr(idStr){
+	var val = $("#"+idStr+" label label .xzimg").attr("onclick");
+	if(idStr=="size"){
+		if(val.indexOf("100")>0){
+			val = 100;
+		}else if(val.indexOf("50")>0){
+			val = 50;
+		}else{
+			val = 30;
+		}
+	}else if(idStr == "required"){
+		if(val.indexOf("是")>0){
+			val = "是";
+		}else{
+			val = "否";
+		}
+	}else{
+		if(val.indexOf("文本")>0){
+			val = "文本";
+		}else if(val.indexOf("数字")){
+			val = "数字";
+		}else{
+			val = "日期";
+		}
+	}
+	return val;
+}
+//查看该元素是否被隐藏，隐藏返回false，显示返回true
+function getdisplay(divId){
+	if($("#"+divId).css("display")=="black"){
+		return true;
+	}else{
+		return false;
+	}
+}
+//保存元素及元素到各项属性
+function holdjs(){
+	//获取选中元素
+	var xl = $(".xz").html();
+	if(getdisplay("size")){//size
+		var size = getStr("size");
+	}
+	
+	var label = $("#labelinp").val();//label
+	var url = $("#urlinp").val();//url
+	var systemid = $("#systemidinp").val();//systemid
+	var name = $("#nameinp").val();//name
+	var required = getStr("required");
+	var inputtype = getStr("inputtype");
+	var maxlength = $("#maxlengthinp").val();//maxlength
+	
+	var urldisplay = $("#url").css("display");
+	alert(urldisplay);
+	
+	$(".xz").append("<div style='display:none'>"+
+	
+	+"	ss	</div>");
+}
+/*	var s = '{
+    "return_code": 0,
+    "return_message": "success",
+    "data": {
+        "data": [
+            {
+                "id": "1",
+                "question": "公主令牌在哪交？"
+            },
+            {
+                "id": "2",
+                "question": "公主护使有什么用？"
+            }
+        ]
+    }
+}';
+strToJson(s);*/
+//json
+function strToJson(str){
+	var jsonStr = JSON.parse(str);
+	return jsonStr;
+	//解析
+//	alert(s["name"]);
+}

@@ -11,9 +11,7 @@ function imgdragstart(){return false;}
 </script>
 </head>
 <body>
-<div class="hide">
-	<div class="lisize"></div>
-</div>
+
 <div class="all">
     <div class="top">
         <ul>
@@ -54,9 +52,9 @@ function imgdragstart(){return false;}
                 	<div class="box" id="size">
                     	<label class="item" for="name">size</label>
                         <label class="itlab">
-                            <label><img class="iptimg" onClick="swidth('100')" src="img/choicey.png">100%</label>
-                            <label><img class="iptimg" onClick="swidth('50')" src="img/choicen.png">50%</label>
-                            <label><img class="iptimg" onClick="swidth('30')" src="img/choicen.png">1/3%</label>
+                            <label><img class="iptimg xzimg" onClick="ssize('100')" src="img/choicey.png">100%</label>
+                            <label><img class="iptimg" onClick="ssize('50')" src="img/choicen.png">50%</label>
+                            <label><img class="iptimg" onClick="ssize('30')" src="img/choicen.png">1/3%</labe1l>
                         </label>
                     </div>
                     <div class="box" id="label">
@@ -86,16 +84,16 @@ function imgdragstart(){return false;}
                     <div class="box" id="required">
                     	<label class="item" for="name">required</label>
                         <label class="itlab">
-                            <label><img class="iptimg" src="img/choicey.png">是</label>
-                            <label><img class="iptimg" src="img/choicen.png">否</label>
+                            <label><img class="iptimg xzimg" onClick="srequired('是')" src="img/choicey.png">是</label>
+                            <label><img class="iptimg" onClick="srequired('否')" src="img/choicen.png">否</label>
                         </label>
                     </div>
                     <div class="box" id="inputtype">
                     	<label class="item" for="name">inputtype</label>
                         <label class="itlab">
-                            <label><img class="iptimg" src="img/choicey.png">文本</label>
-                            <label><img class="iptimg" src="img/choicen.png">数字</label>
-                            <label><img class="iptimg" src="img/choicen.png">日期</label>
+                            <label><img class="iptimg xzimg" onClick="sinputtype('文本')" src="img/choicey.png">文本</label>
+                            <label><img class="iptimg" onClick="sinputtype('数字')" src="img/choicen.png">数字</label>
+                            <label><img class="iptimg" onClick="sinputtype('日期')" src="img/choicen.png">日期</label>
                         </label>
                     </div>
                     <div class="box" id="maxlength">
@@ -105,9 +103,16 @@ function imgdragstart(){return false;}
                         </label>
                     </div>
                     <img src="img/delbtn.png" class="delbut" onClick="del()">
+                    <img src="img/delbtn1.png" alt="保存" class="delbut" onClick="holdjs()">
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="hide">
+	<div class="lisize"></div>
+    <div class="hiderig">
+    
     </div>
 </div>
 <div class="viewDiv"></div>

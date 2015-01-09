@@ -171,7 +171,7 @@ height:25px;
 }
 #tempBox{position: absolute;z-index:9999; width:258px; border:1px solid rgba(0, 0, 0, 0.65);text-align:center; line-height:60px;}
 .hide{
-	display:none;
+
 }
 .viewDiv{
 	width: 600px;
