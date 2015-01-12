@@ -28,9 +28,44 @@ function li(size){
 	}
 	
 }
+/*function hold(){
+	var lilen = $("#rows").children("li").length;
+	var div = $("#rows").children("li").children("div");
+	var divlen = $("#rows").children("li").children("div").length;
+	var model = new Object();
+	var tags = new Array();
+	for(var i = 0;i<divlen;i++){
+		tags[i] = new Array();
+	}
+	for(var i = 0; i<divlen;i++){
+		tags[i][0] = div.eq(i).attr("id");//ID
+		tags[i][1] = div.eq(i).parent().attr("class");//父id
+		tags[i][2] = div.eq(i).children().children(".size").html();
+	}
+	model.Element = tags;
+	var json = JSON.stringify(model,100);
+	alert(json);
+
+}*/
 function hold(){
-	var condiv = $("#rows").html();
-	$(".viewDiv").html(condiv).unbind("onclick");
+	var lilen = $("#rows").children("li").length;
+	var div = $("#rows").children("li").children("div");
+	var divlen = $("#rows").children("li").children("div").length;
+	var con = new Object();
+	con.li = "li"
+	var tags = new Array();
+	for(var i = 0; i<divlen;i++){
+		var model = new Object();
+		model.id = div.eq(i).attr("id");//ID
+		model.pid = div.eq(i).parent().attr("class");//父id
+		if(div.eq(i).children().children(".size").html()!=null){
+			model.size = div.eq(i).children().children(".size").html();
+		}
+		tags[i] = model;
+	}
+	con.Element = tags;
+	var json = JSON.stringify(con,100);
+	alert(json);
 }
 function s(isthis){
 	var clik = "#rows li ."+isthis;//被选中元素的class
@@ -244,7 +279,7 @@ function getStr(idStr){
 }
 //查看该元素是否被隐藏，隐藏返回false，显示返回true
 function getdisplay(divId){
-	if($("#"+divId).css("display")=="black"){
+	if($("#"+divId).css("display")=="block"){
 		return true;
 	}else{
 		return false;
@@ -252,26 +287,59 @@ function getdisplay(divId){
 }
 //保存元素及元素到各项属性
 function holdjs(){
-	//获取选中元素
+	//获取选中元素 div
 	var xl = $(".xz").html();
+	//获取选中元素的行的class li的class
+	var xlli = $(".xz").parent().attr("class");
+	//要保存的区域的div
+	var keep  = "";
+	var size = "";
 	if(getdisplay("size")){//size
-		var size = getStr("size");
+		size = getStr("size");
+		keep += "<div style='display:none' class='size'>"+size+"</div>";
 	}
-	
-	var label = $("#labelinp").val();//label
-	var url = $("#urlinp").val();//url
-	var systemid = $("#systemidinp").val();//systemid
-	var name = $("#nameinp").val();//name
-	var required = getStr("required");
-	var inputtype = getStr("inputtype");
-	var maxlength = $("#maxlengthinp").val();//maxlength
-	
-	var urldisplay = $("#url").css("display");
-	alert(urldisplay);
-	
-	$(".xz").append("<div style='display:none'>"+
-	
-	+"	ss	</div>");
+	var label = "";
+	if(getdisplay("label")){
+		label = $("#labelinp").val();//label
+		keep += "<div style='display:none' class='label'>"+label+"</div>";
+	}
+	var url = "";
+	if(getdisplay("url")){
+		url = $("#urlinp").val();//url
+		keep += "<div style='display:none' class='url'>"+url+"</div>";
+	}
+	var systemid = "";
+	if(getdisplay("systemid")){
+		systemid = $("#systemidinp").val();//systemid
+		keep += "<div style='display:none' class='systemid'>"+systemid+"</div>";
+	}
+	var name = "";
+	if(getdisplay("name")){
+		name = 	$("#nameinp").val();//name
+		keep += "<div style='display:none' class='name'>"+name+"</div>";
+	}
+	var required = "";
+	if(getdisplay("required")){
+		required = getStr("required");
+		keep += "<div style='display:none' class='required'>"+required+"</div>";
+	}
+	var inputtype = "";
+	if(getdisplay("inputtype")){
+		inputtype = getStr("inputtype");
+		keep += "<div style='display:none' class='inputtype'>"+inputtype+"</div>";
+	}
+	var maxlength = "";
+	if(getdisplay("maxlength")){
+		maxlength = $("#maxlengthinp").val();//maxlength
+		keep += "<div style='display:none' class='maxlength'>"+maxlength+"</div>";
+	}
+	$(".xz div").html(keep);
+
+
+
+
+
+
 }
 /*	var s = '{
     "return_code": 0,
@@ -297,3 +365,108 @@ function strToJson(str){
 	//解析
 //	alert(s["name"]);
 }
+function test(){
+	var student = new Object();
+	student.name = "Lanny";
+	var json = JSON.stringify(student,100);
+	alert(json); 
+}
+/*
+function test(){
+	var s = "";
+	s += "{\"data\":";
+	s += "[";
+
+
+
+	s += "{\"hang\":";
+	s += "[{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":1,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":2,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	
+	s += "		},";
+	s += "{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":3,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":4,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	
+	s += "		},";
+	s += "{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":5,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":6,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	s += "		}]";
+	s += "}],";
+	
+	
+	
+	s += "{\"hang\":";
+	s += "[{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":1,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":2,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	
+	s += "		},";
+	s += "{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":3,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":4,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	
+	s += "		},";
+	s += "{";
+	s += "	\"yuansu\":[";
+	s += "		{";
+	s += "			\"id\":5,";
+	s += "			\"name\":\"test1\"";
+	s += "		},"
+	s += "		{";
+	s += "			\"id\":6,";
+	s += "			\"name\":\"test2\"";
+	s += "		}";
+	s += "		]";
+	s += "		}]";
+	s += "}],";
+	
+	
+	
+	s += "}";
+	alert(s);
+	s = strToJson(s);
+	//alert(s["data"]["hang"][1]["yuansu"][1]["id"]);
+}*/

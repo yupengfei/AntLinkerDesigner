@@ -130,7 +130,7 @@ vertical-align: middle;
 	color:#191919;
 	font-size:20px;
 	border-bottom:1px solid #B8B8B8;
-	
+	display:none;
 }
 .item{
 	float:left;
