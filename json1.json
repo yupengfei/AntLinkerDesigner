@@ -1,0 +1,76 @@
+// JavaScript Document
+/*{
+    "Li": [
+        {
+            "row": 1,//行的行数
+            "id": "pd1"//行的id,下面元素的id对应的是这个id
+        },
+        {
+            "row": 2,
+            "id": "pd2"
+        },
+        {
+            "row": 3,
+            "id": "pd3"
+        }
+    ],
+    "Element": [
+        {
+            "id": "text",//元素类型
+            "lid": "pd1",//在哪一行，就是行的id，类似父id
+            "size": "30",//下面的各项是元素的属性，该元素有什么属性，都会显示，例如：text有size和label属性，这里就只显示size和label属性
+            "label": "2121"
+        },
+        {
+            "id": "selleft",
+            "lid": "pd2",
+            "size": "30",
+            "label": "2121"
+        },
+        {
+            "id": "selsright",
+            "lid": "pd3",
+            "size": "30",
+            "label": "2121"
+        },
+        {
+            "id": "manytext",
+            "lid": "pd3",
+            "size": "30",
+            "label": "2121"
+        }
+    ]
+}*/
+
+{
+    "Li": [
+        {
+            "row": 1,//行的行数
+            "id": "pd1"//行的id,下面元素的id对应的是这个id
+        },
+        {
+            "row": 2,
+            "id": "pd2"
+        },
+        {
+            "row": 3,
+            "id": "pd3"
+        },
+        {
+            "row": 4,
+            "id": "pd4"
+        }
+    ],
+    "Element": [
+        {
+            "id": "text",
+            "lid": "pd2",
+			"size": "30",//下面的各项是元素的属性，该元素有什么属性，都会显示，例如：text有size和label属性，这里就只显示size和label属性
+            "label": "2121"
+        },
+        {
+            "id": "selsleft",
+            "lid": "pd3"
+        }
+    ]
+}

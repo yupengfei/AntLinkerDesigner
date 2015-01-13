@@ -24,6 +24,7 @@ var r=null;
 		if($("#rows").children("li").length<=10){
 			$("#rows").append("<li onClick='li("+(lisize+1)+")' class='pd"+(lisize+1)+"'></li>");
 			$(".hide .lisize").html(lisize+1);
+			$(".hiderig").append("<div class='pd"+(lisize+1)+"'></div>");
 			startDrag();
 		}else{
 			alert("超出最大行数");
@@ -170,7 +171,7 @@ var r=null;
 									var date = new Date().getTime()+"";
 									$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
 									$(ThatO[i]).children().last().addClass(date);
-									$(ThatO[i]).children().last().append("<div style='display:none;'></div>");
+									$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'></div>");
 								}else{
 									var getclasslength = getclass.length;
 									var date = new Date().getTime()+"";
@@ -187,7 +188,7 @@ var r=null;
 										var date = new Date().getTime()+"";
 										$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
 										$(ThatO[i]).children().last().addClass(date);
-										$(ThatO[i]).children().last().append("<div style='display:none;'></div>");
+										$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'></div>");
 									}
 								}
 

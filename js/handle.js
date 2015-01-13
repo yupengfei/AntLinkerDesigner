@@ -1,32 +1,42 @@
 function li(size){
-	var obj = $(".pd"+size);
+	var obj = $("#rows .pd"+size);
 	var lihtml = obj.html();
 	if(lihtml==""){
 		$("#rows li div").css("border","1px solid #FFF");
 		$("#rows li div").removeClass("xz");
 		var objBorCor = obj.css("border-bottom-color");
-		if(objBorCor=="rgb(200, 200, 200)"){
+		if(objBorCor=="rgb(200, 200, 200)"){//选中了
 			$("#rows li").css("border","1px solid #FFF");
 			$("#rows li").css("border-bottom","1px solid #C8C8C8");
 			obj.css("border","1px solid #000");
 			//重置所有名为xzli的class
 			$("#rows li").removeClass("xzli");
 			obj.addClass("xzli");
-//			$("#name").show(500);
-			restore();
+			$("#label").show(200);
+			$("#name").show(200);
+			restoreli(size);
 		}
-		else if(objBorCor=="rgb(0, 0, 0)"){
+		else if(objBorCor=="rgb(0, 0, 0)"){//取消选中了
 			obj.css("border","1px solid #FFF");
 			obj.css("border-bottom","1px solid #C8C8C8");
 			obj.removeClass("xzli");
 //			$("#name").hide(500);
 			//保存方法
-			
 			//全部清空方法
-			restore();
+			$("#label").hide(200);
+			$("#name").hide(200);
+			$("#nameinp").val("");
+			$("#labelinp").val("");
+			return;
 		}
+//		alert(size);
 	}
 	
+}
+//重置右侧表单
+function restoreli(isthis){
+	$("#labelinp").val($(".xz .divno .label").html());
+	$("#nameinp").val($(".xz .divno .name").html());
 }
 /*function hold(){
 	var lilen = $("#rows").children("li").length;
@@ -48,19 +58,52 @@ function li(size){
 
 }*/
 function hold(){
+	$("#rows").children("li").css("border","1px solid #FFF");
+	$("#rows").children("li").css("border-bottom","1px solid #C8C8C8");
+	$("#rows").children("li").removeClass("xzli");
+	var li = $("#rows").children("li");
 	var lilen = $("#rows").children("li").length;
 	var div = $("#rows").children("li").children("div");
 	var divlen = $("#rows").children("li").children("div").length;
 	var con = new Object();
-	con.li = "li"
+	var lis = new Array();
+	for(var i = 0; i <lilen;i++){
+		var limodel = new Object();
+		limodel.row = i+1;
+		limodel.id = li.eq(i).attr("class");
+		lis[i] = limodel
+	}
+	con.Li = lis;
 	var tags = new Array();
 	for(var i = 0; i<divlen;i++){
 		var model = new Object();
 		model.id = div.eq(i).attr("id");//ID
-		model.pid = div.eq(i).parent().attr("class");//父id
+		model.lid = div.eq(i).parent().attr("class");//父id
 		if(div.eq(i).children().children(".size").html()!=null){
 			model.size = div.eq(i).children().children(".size").html();
 		}
+		if(div.eq(i).children().children(".label").html()!=null){
+			model.label = div.eq(i).children().children(".label").html();
+		}
+		if(div.eq(i).children().children(".url").html()!=null){
+			model.url = div.eq(i).children().children(".url").html();
+		}
+		if(div.eq(i).children().children(".systemid").html()!=null){
+			model.systemid = div.eq(i).children().children(".systemid").html();
+		}
+		if(div.eq(i).children().children(".name").html()!=null){
+			model.name = div.eq(i).children().children(".name").html();
+		}
+		if(div.eq(i).children().children(".required").html()!=null){
+			model.required = div.eq(i).children().children(".required").html();
+		}
+		if(div.eq(i).children().children(".inputtype").html()!=null){
+			model.inputtype = div.eq(i).children().children(".inputtype").html();
+		}
+		if(div.eq(i).children().children(".maxlength").html()!=null){
+			model.maxlength = div.eq(i).children().children(".maxlength").html();
+		}
+		
 		tags[i] = model;
 	}
 	con.Element = tags;
@@ -94,8 +137,6 @@ function s(isthis){
 		return;
 	}
 	fhide();//隐藏右侧元素
-	//重置表单内文本框
-	restore();
 	var sdate = 200;
 	//纯文本
 	if(clikid == "text"){
@@ -175,7 +216,8 @@ function s(isthis){
 	else if(clikid == "textlist"){
 		
 	}
-	
+	//重置表单内文本框
+	restore(isthis);
 }
 
 $(document).ready(function(){
@@ -196,19 +238,31 @@ $(document).ready(function(){
 	$(".viewDiv").css("left",(bodywid/2)-(600/2)+"px");
 
 })
+function imgtacitly(isthis,classstr){
+	var varstr = $("#rows li ."+isthis+" div ."+classstr+"").html();
+	if(varstr==null){
+		$("#"+classstr+" label label img").attr("src","img/choicen.png");
+		$("#"+classstr+" label label img").last().attr("src","img/choicey.png");
+	}else{
+		var slen =$("#"+classstr+" label label").change("img").length;
+		for(i=0;i<slen;i++){
+			if($("#"+classstr+" label label").eq(i).html().indexOf(varstr)>0){
+				$("#"+classstr+" label label img").attr("src","img/choicen.png");
+				$("#"+classstr+" label label img").eq(i).attr("src","img/choicey.png");
+			}
+		}
+	}
+}
 //重置右侧表单
-function restore(){
-	$("#size label label img").attr("src","img/choicen.png");
-	$("#size label label img").first().attr("src","img/choicey.png");
-	$("#inputtype label label img").attr("src","img/choicen.png");
-	$("#inputtype label label img").first().attr("src","img/choicey.png");
-	$("#required label label img").attr("src","img/choicen.png");
-	$("#required label label img").first().attr("src","img/choicey.png");
-	$("#labelinp").val("");
-	$("#nameinp").val("");
-	$("#urlinp").val("");
-	$("#systemidinp").val("");
-	$("#maxlengthinp").val("");
+function restore(isthis){
+	imgtacitly(isthis,"size");
+	//imgtacitly(isthis,"inputtype");
+	imgtacitly(isthis,"required");
+	$("#labelinp").val($(".xz .divno .label").html());
+	$("#nameinp").val($(".xz .divno .name").html());
+	$("#urlinp").val($(".xz .divno .url").html());
+	$("#systemidinp").val($(".xz .divno .systemid").html());
+	$("#maxlengthinp").val($(".xz .divno .maxlength").html());
 }
 //右侧表单全部隐藏
 function fhide(){
@@ -216,10 +270,14 @@ function fhide(){
 }
 //设置元素宽度
 function ssize(width){
+	if($(".xz .divno .size").html()==null){
+		$(".xz .divno").append("<div class='size'></div>");
+	}
 	if(width == '100'){
 		var sibwidth = $(".xz").siblings().width();
 		if(sibwidth==null){
 			$(".xz").animate({width:'596px'});
+			$(".xz .divno .size").html("100");
 		}else{
 			alert("设置的宽度超过总宽度");
 		}
@@ -227,11 +285,36 @@ function ssize(width){
 		var siblength = $(".xz").siblings().length;
 		if(siblength <= 1){
 			$(".xz").animate({width:'296px'});
+			$(".xz .divno .size").html("50");
 		}else{
 			alert("设置的宽度超过总宽度");
 		}
 	}else{
 		$(".xz").animate({width:'197px'});
+		$(".xz .divno .size").html("30");
+	}
+}
+//设置元素是否必填
+function srequired(str){
+	if($(".xz .divno .required").html()==null){
+		$(".xz .divno").append("<div class='required'></div>");
+	}
+	if(str == '是'){
+		$(".xz .divno .required").html("是");
+	}else{
+		$(".xz .divno .required").html("否");
+	}
+}
+function sinputtype(str){
+	if($(".xz .divno .sinputtype").html()==null){
+		$(".xz .divno").append("<div class='sinputtype'></div>");
+	}
+	if(str == '文本'){
+		$(".xz .divno .sinputtype").html("文本");
+	}else if(str == '数字'){
+		$(".xz .divno .sinputtype").html("数字");
+	}else{
+		$(".xz .divno .sinputtype").html("日期");
 	}
 }
 //删除元素
@@ -244,6 +327,10 @@ function del(){
 		})
 	}else{
 		$(".xzli").hide(500,function(){
+			var liclass = $(".xzli").attr("class");
+			var clasize = liclass.indexOf("xzli");
+			liclass = liclass.substr(0,clasize).trim();
+			$(".hiderig ."+liclass+"").remove();
 			$(".xzli").remove();
 		})
 	}
@@ -289,57 +376,72 @@ function getdisplay(divId){
 function holdjs(){
 	//获取选中元素 div
 	var xl = $(".xz").html();
+	if(xl!=null){
+		//要保存的区域的div
+		var keep  = "";
+		var size = "";
+		if(getdisplay("size")){//size
+			size = getStr("size");
+			keep += "<div style='display:none' class='size'>"+size+"</div>";
+		}
+		var label = "";
+		if(getdisplay("label")){
+			label = $("#labelinp").val();//label
+			keep += "<div style='display:none' class='label'>"+label+"</div>";
+			$(".xz span").html(label);
+		}
+		var url = "";
+		if(getdisplay("url")){
+			url = $("#urlinp").val();//url
+			keep += "<div style='display:none' class='url'>"+url+"</div>";
+		}
+		var systemid = "";
+		if(getdisplay("systemid")){
+			systemid = $("#systemidinp").val();//systemid
+			keep += "<div style='display:none' class='systemid'>"+systemid+"</div>";
+		}
+		var name = "";
+		if(getdisplay("name")){
+			name = 	$("#nameinp").val();//name
+			keep += "<div style='display:none' class='name'>"+name+"</div>";
+		}
+		var required = "";
+		if(getdisplay("required")){
+			required = getStr("required");
+			keep += "<div style='display:none' class='required'>"+required+"</div>";
+		}
+		var inputtype = "";
+		if(getdisplay("inputtype")){
+			inputtype = getStr("inputtype");
+			keep += "<div style='display:none' class='inputtype'>"+inputtype+"</div>";
+		}
+		var maxlength = "";
+		if(getdisplay("maxlength")){
+			maxlength = $("#maxlengthinp").val();//maxlength
+			keep += "<div style='display:none' class='maxlength'>"+maxlength+"</div>";
+		}
+		$(".xz div").html(keep);
+		return;
+	}
 	//获取选中元素的行的class li的class
-	var xlli = $(".xz").parent().attr("class");
-	//要保存的区域的div
-	var keep  = "";
-	var size = "";
-	if(getdisplay("size")){//size
-		size = getStr("size");
-		keep += "<div style='display:none' class='size'>"+size+"</div>";
+	var xzli = $(".xzli").html();
+	if(xzli==""){
+		var liclass = $(".xzli").attr("class");
+		var label = $("#labelinp").val();
+		var name = $("#nameinp").val();
+		var clasize = liclass.indexOf("xzli");
+		liclass = liclass.substr(0,clasize).trim();
+		if($(".hiderig ."+liclass+" .label").html()==null){
+			$(".hiderig ."+liclass+"").append("<div class='label'>"+label+"</div>");
+		}else{
+			$(".hiderig ."+liclass+" .label").html(label);
+		}
+		if($(".hiderig ."+liclass+" .name").html()==null){
+			$(".hiderig ."+liclass+"").append("<div class='name'>"+name+"</div>");
+		}else{
+			$(".hiderig ."+liclass+" .name").html(name);
+		}
 	}
-	var label = "";
-	if(getdisplay("label")){
-		label = $("#labelinp").val();//label
-		keep += "<div style='display:none' class='label'>"+label+"</div>";
-	}
-	var url = "";
-	if(getdisplay("url")){
-		url = $("#urlinp").val();//url
-		keep += "<div style='display:none' class='url'>"+url+"</div>";
-	}
-	var systemid = "";
-	if(getdisplay("systemid")){
-		systemid = $("#systemidinp").val();//systemid
-		keep += "<div style='display:none' class='systemid'>"+systemid+"</div>";
-	}
-	var name = "";
-	if(getdisplay("name")){
-		name = 	$("#nameinp").val();//name
-		keep += "<div style='display:none' class='name'>"+name+"</div>";
-	}
-	var required = "";
-	if(getdisplay("required")){
-		required = getStr("required");
-		keep += "<div style='display:none' class='required'>"+required+"</div>";
-	}
-	var inputtype = "";
-	if(getdisplay("inputtype")){
-		inputtype = getStr("inputtype");
-		keep += "<div style='display:none' class='inputtype'>"+inputtype+"</div>";
-	}
-	var maxlength = "";
-	if(getdisplay("maxlength")){
-		maxlength = $("#maxlengthinp").val();//maxlength
-		keep += "<div style='display:none' class='maxlength'>"+maxlength+"</div>";
-	}
-	$(".xz div").html(keep);
-
-
-
-
-
-
 }
 /*	var s = '{
     "return_code": 0,
@@ -369,7 +471,7 @@ function test(){
 	var student = new Object();
 	student.name = "Lanny";
 	var json = JSON.stringify(student,100);
-	alert(json); 
+	alert(json);
 }
 /*
 function test(){
