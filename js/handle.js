@@ -642,3 +642,111 @@ function tc(){
 	$(".viewHtml").hide(200);
 	$(".outer").hide(200);
 }
+//解析json
+function jsonStr(json){
+for(var i = 0; i < json["Li"].length; i++){
+		var id = json["Li"][i]["id"];//pd1
+		var cla = id.substr(2,id.length);//1
+		var name = json["Li"][i]["name"];
+		var label = json["Li"][i]["label"];
+		$("#rows").append("<li class='"+id+"' onclick='li("+cla+")'></li>");
+		$(".hiderig").append("<div class='"+id+"'></div>");
+		if(name!=null){
+			$(".hiderig ."+id+"").append("<div class='name'>"+name+"</div>");
+		}
+		if(label!=null){
+			$(".hiderig ."+id+"").append("<div class='label'>"+label+"</div>");
+		}
+	}
+	var length = json["Li"].length*1-1;
+	var id = json["Li"][length]["id"];//pd1
+	var cla = id.substr(2,id.length);//1
+	$(".lisize").html(cla);
+	for(var i = 0; i < json["Element"].length; i++){
+		var id = json["Element"][i]["id"];
+		var lid = json["Element"][i]["lid"];
+		var stamp = json["Element"][i]["stamp"];
+		var size = json["Element"][i]["size"];
+		var label = json["Element"][i]["label"];
+		var url = json["Element"][i]["url"];
+		var systemid = json["Element"][i]["systemid"];
+		var name = json["Element"][i]["name"];
+		var required = json["Element"][i]["required"];
+		var inputtype = json["Element"][i]["inputtype"];
+		var maxlength = json["Element"][i]["maxlength"];
+		if($("#rows ."+lid+" ."+stamp+"").html()==null){
+			$("#rows ."+lid+"").append("<div id='"+id+"' class=\'"+stamp+"\' onclick='s(\""+stamp+"\")'><span></span><div class='divno' style='display:none'></div></div>");
+		}
+		if(size!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='size'>"+size+"</div>");
+			if(size=="100"){
+				$("#rows ."+lid+" ."+stamp+"").css("width","596px");
+			}
+			if(size=="50"){
+				$("#rows ."+lid+" ."+stamp+"").css("width","296px");
+			}
+			if(size=="30"){
+				$("#rows ."+lid+" ."+stamp+"").css("width","197px");
+			}
+		}
+		if(label!=null){
+			$("#rows ."+lid+" ."+stamp+" span").append(label);
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='label'>"+label+"</div>");
+		}
+		if(url!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='url'>"+url+"</div>");
+		}
+		if(systemid!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='systemid'>"+systemid+"</div>");
+		}
+		if(name!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='name'>"+name+"</div>");
+		}
+		if(required!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='required'>"+required+"</div>");
+			
+		}
+		if(inputtype!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='inputtype'>"+inputtype+"</div>");
+		}
+		if(maxlength!=null){
+			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='maxlength'>"+maxlength+"</div>");
+		}
+		//img
+		if(id=="selleft"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/choicey.png'>");
+		}
+		if(id=="selright"){
+			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/choicey.png'>");
+		}
+		
+		if(id=="selsleft"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/choicesel.png'>");
+		}
+		if(id=="selsright"){
+			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/choicesel.png'>");
+		}
+		if(id=="isopenleft"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/longbtny.png'>");
+		}
+		if(id=="isopenright"){
+			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/parkimg.png'>");
+		}
+		if(id=="listleft"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/lowerbtn2.png'>");
+		}
+		if(id=="listright"){
+			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/lowerbtn2.png'>");
+		}
+		if(id=="onetext"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/inputimg1.png'>");
+		}
+		if(id=="manytext"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img  class='mar20' src='img/inputsel1.png'>");
+		}
+		if(id=="textlist"){
+			$("#rows ."+lid+" ."+stamp+"").append("<img class='mar20' src='img/文本列表.png'>");
+		}
+		
+	}	
+}

@@ -171,7 +171,7 @@ var r=null;
 									var date = new Date().getTime()+"";
 									$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
 									$(ThatO[i]).children().last().addClass(date);
-									$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'></div>");
+									$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'><div class='label'>"+tempBox.text()+"</div></div>");
 								}else{
 									var getclasslength = getclass.length;
 									var date = new Date().getTime()+"";
@@ -188,7 +188,7 @@ var r=null;
 										var date = new Date().getTime()+"";
 										$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
 										$(ThatO[i]).children().last().addClass(date);
-										$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'></div>");
+										$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'><div class='label'>"+tempBox.text()+"</div></div>");
 									}
 								}
 

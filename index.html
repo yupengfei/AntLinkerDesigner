@@ -133,25 +133,11 @@ for(i in document.images)document.images[i].ondragstart=imgdragstart;
 <script src="js/drag.js"></script>
 <script>
 $(document).ready(function(){
-	var json = {"Li":[{"row":1,"id":"pd1","name":"123","label":"labelstr"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"}],"Element":[{"id":"text","lid":"pd1","stamp":"1421220067096"},{"id":"selright","lid":"pd2","stamp":"1421220068515"},{"id":"selsright","lid":"pd3","stamp":"1421220070858"}]};
+	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd8"}],"Element":[{"id":"text","lid":"pd1","stamp":"1421234007223","label":"纯文本"},{"id":"manytext","lid":"pd2","stamp":"1421234016994","label":"多行文本输入"},{"id":"selsright","lid":"pd3","stamp":"1421234008594","label":"多选右"},{"id":"menu","lid":"pd3","stamp":"1421234015131","label":"功能键"},{"id":"isopenright","lid":"pd4","stamp":"1421234009643","label":"开关右"},{"id":"listleft","lid":"pd4","stamp":"1421234011251","label":"下拉菜单左"},{"id":"isopenright","lid":"pd4","stamp":"1421234012802","label":"开关右"},{"id":"menu","lid":"pd5","stamp":"1421234018596","label":"功能键"},{"id":"onetext","lid":"pd5","stamp":"1421234020197","label":"单行文本输入"},{"id":"selleft","lid":"pd6","stamp":"1421234023285","label":"单选左"},{"id":"onetext","lid":"pd6","stamp":"1421234703859","label":"单行文本输入"},{"id":"menu","lid":"pd8","stamp":"1421234702476","label":"功能键"}]};
 	//var jsonStr = eval("("+json+")");
-	for(var i = 0; i < json["Li"].length; i++){
-		var id = json["Li"][i]["id"];//pd1
-		var cla = id.substr(2,3);//1
-		var name = json["Li"][i]["name"];
-		var label = json["Li"][i]["label"];
-		$("#rows").append("<li class='"+id+"' onclick='li("+cla+")'></li>");
-		$(".hiderig").append("<div class='"+id+"'></div>");
-		if(name!=null){
-			$(".hiderig ."+id+"").append("<div class='name'>"+name+"</div>");
-		}
-		if(label!=null){
-			$(".hiderig ."+id+"").append("<div class='label'>"+label+"</div>");
-		}
+	if(json["Li"]==null||json["Element"]==null){
+		return;
 	}
-	for(var i = 0; i < json["Element"].length; i++){
-		var id = json["Element"][i]["id"];
-		
-	}
+	jsonStr(json);
 })
 </script>
