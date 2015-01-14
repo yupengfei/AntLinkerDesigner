@@ -12,8 +12,17 @@ function li(size){
 			//重置所有名为xzli的class
 			$("#rows li").removeClass("xzli");
 			obj.addClass("xzli");
+			$("#size").hide(200);
+			$("#label").hide(200);
+			$("#url").hide(200);
+			$("#systemid").hide(200);
+			$("#name").hide(200);
+			$("#required").hide(200);
+			$("#inputtype").hide(200);
+			$("#maxlength").hide(200);
 			$("#label").show(200);
 			$("#name").show(200);
+			$("#holdid").show(200);
 			restoreli(size);
 		}
 		else if(objBorCor=="rgb(0, 0, 0)"){//取消选中了
@@ -27,6 +36,7 @@ function li(size){
 			$("#name").hide(200);
 			$("#nameinp").val("");
 			$("#labelinp").val("");
+			$("#holdid").hide(200);
 			return;
 		}
 //		alert(size);
@@ -35,8 +45,16 @@ function li(size){
 }
 //重置右侧表单
 function restoreli(isthis){
-	$("#labelinp").val($(".xz .divno .label").html());
-	$("#nameinp").val($(".xz .divno .name").html());
+	if($(".hiderig .pd"+isthis+"  .label").html()!=null){
+		$("#labelinp").val($(".hiderig .pd"+isthis+"  .label").html().trim());
+	}else{
+		$("#labelinp").val("");
+	}
+	if($(".hiderig .pd"+isthis+"  .name").html()!=null){
+		$("#nameinp").val($(".hiderig .pd"+isthis+"  .name").html().trim());
+	}else{
+		$("#nameinp").val("");
+	}
 }
 /*function hold(){
 	var lilen = $("#rows").children("li").length;
@@ -58,9 +76,14 @@ function restoreli(isthis){
 
 }*/
 function hold(){
+	//格式化li
 	$("#rows").children("li").css("border","1px solid #FFF");
 	$("#rows").children("li").css("border-bottom","1px solid #C8C8C8");
 	$("#rows").children("li").removeClass("xzli");
+	//格式化div
+	$("#rows").children("li").children("div").css("border","1px solid #FFF");
+	$("#rows").children("li").children("div").removeClass("xz");
+	$(".rig div").hide(200);
 	var li = $("#rows").children("li");
 	var lilen = $("#rows").children("li").length;
 	var div = $("#rows").children("li").children("div");
@@ -70,7 +93,14 @@ function hold(){
 	for(var i = 0; i <lilen;i++){
 		var limodel = new Object();
 		limodel.row = i+1;
-		limodel.id = li.eq(i).attr("class");
+		var licla = li.eq(i).attr("class");
+		limodel.id = licla;
+		if($(".hiderig ."+licla+"  .label").html()!=null){
+			limodel.label = $(".hiderig ."+licla+"  .label").html().trim();
+		}
+		if($(".hiderig ."+licla+"  .name").html()!=null){
+			limodel.name = $(".hiderig ."+licla+"  .name").html().trim();
+		}
 		lis[i] = limodel
 	}
 	con.Li = lis;
@@ -79,6 +109,7 @@ function hold(){
 		var model = new Object();
 		model.id = div.eq(i).attr("id");//ID
 		model.lid = div.eq(i).parent().attr("class");//父id
+		model.stamp = div.eq(i).attr("class");//添加时间
 		if(div.eq(i).children().children(".size").html()!=null){
 			model.size = div.eq(i).children().children(".size").html();
 		}
@@ -130,9 +161,11 @@ function s(isthis){
 		//重置所有名为xz的class
 		$("#rows li div").removeClass("xz");
 		$(clik).addClass("xz");
+		$("#holdid").show(200);
 	}else if(clikborcolor == "rgb(0, 0, 0)"){
 		$(clik).css("border","1px solid #fff");
 		$(clik).removeClass("xz");
+		$("#holdid").hide(200);
 		fhide();//隐藏右侧元素
 		return;
 	}
@@ -185,11 +218,13 @@ function s(isthis){
 		$("#size").show(sdate);
 		$("#label").show(sdate);
 		$("#name").show(sdate);
+		$("#required").show(sdate);
 	}
 	else if(clikid == "listright"){//下拉列表右
 		$("#size").show(sdate);
 		$("#label").show(sdate);
 		$("#name").show(sdate);
+		$("#required").show(sdate);
 	}
 	else if(clikid == "menu"){//按钮
 		$("#size").show(sdate);
@@ -213,8 +248,10 @@ function s(isthis){
 		$("#required").show(sdate);
 		$("#maxlength").show(sdate);
 	}
-	else if(clikid == "textlist"){
-		
+	else if(clikid == "textlist"){//列表
+		$("#size").show(sdate);
+		$("#label").show(sdate);
+		$("#name").show(sdate);
 	}
 	//重置表单内文本框
 	restore(isthis);
@@ -232,11 +269,6 @@ $(document).ready(function(){
 		}
 		
 	});
-	var bodyhei = $(window).height();
-	var bodywid = $(window).width();
-	$(".viewDiv").css("top",(bodyhei/2)-(890/2)+"px");
-	$(".viewDiv").css("left",(bodywid/2)-(600/2)+"px");
-
 })
 function imgtacitly(isthis,classstr){
 	var varstr = $("#rows li ."+isthis+" div ."+classstr+"").html();
@@ -334,6 +366,7 @@ function del(){
 			$(".xzli").remove();
 		})
 	}
+	$("#holdid").hide(200);
 	fhide();
 }
 //得到选择的单选框
@@ -572,3 +605,40 @@ function test(){
 	s = strToJson(s);
 	//alert(s["data"]["hang"][1]["yuansu"][1]["id"]);
 }*/
+
+/*$(".rigdiv").mousedown(function (event) {
+            var rWidth = $(".rigdiv").width();
+			var offset = $(this).offset();
+            _x = event.clientX - offset.left;
+            _y = event.clientY - offset.top;
+            $(".borput").mousemove(function (event) {
+                _xx = event.clientX - _x;
+                _yy = event.clientY - _y;
+				var bodyW = $("body").width();//网页宽度像素
+				var rigleft = $(".rigdiv").offset().left;//div距离浏览器左边边框宽度像素
+				var bodyleft = $(".all").offset().left;//左边空隙
+				var allwidth = $(".all").width();//内容的宽度
+				var rigwid = (bodyW-rigleft-bodyleft);
+				var s = (_xx-bodyleft);
+				var a = allwidth - s;
+				$(".rigdiv").css("width",a+"px");
+                return false;
+            });
+            return false;
+        });
+*/
+function view(){
+	var bodyhei = $(window).height();
+	var bodywid = $(window).width();
+	$(".outer").css("height",bodyhei);
+	$(".outer").css("width",bodywid);
+	$(".outer").show(200);
+	$(".viewHtml").css("top",(bodyhei/2)-(890/2)+"px");
+	$(".viewHtml").css("left",(bodywid/2)-(600/2)+"px");
+	$(".viewHtml").show(200);
+	$(".viewDiv").html($("#rows").html());
+}
+function tc(){
+	$(".viewHtml").hide(200);
+	$(".outer").hide(200);
+}

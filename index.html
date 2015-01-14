@@ -17,7 +17,7 @@ function imgdragstart(){return false;}
         <ul>
             <li onClick="hold()"><img src="img/storage.png"><h3>存储</h3></li>
             <li onClick="addrow()"><img src="img/addbtn.png"><h3>添加一行</h3></li>
-            <li><img src="img/see.png"><h3>浏览</h3></li>
+            <li onClick="view()"><img src="img/see.png"><h3>浏览</h3></li>
             <li><img src="img/quitimg.png"><h3>退出</h3></li>
         </ul>
     </div>
@@ -31,9 +31,9 @@ function imgdragstart(){return false;}
                 <li id="5"><div id="selsright"><img src="img/choicesel.png"><span>多选右</span></div></li>
                 <li id="6"><div id="isopenleft"><span>开关左</span><img src="img/longbtny.png"></div></li>
                 <li id="7"><div id="isopenright"><img src="img/parkimg.png"><span>开关右</span></div></li>
-                <li id="8"><div id="listleft"><span>下拉列表左</span><img src="img/lowerbtn2.png"></div></li>
-                <li id="9"><div id="listright"><img src="img/lowerbtn2.png"><span>下拉列表右</span></div></li>
-                <li id="10"><div id="menu"><span>功能键</span><img src="img/search.png"></div></li>
+                <li id="8"><div id="listleft"><span>下拉菜单左</span><img src="img/lowerbtn2.png"></div></li>
+                <li id="9"><div id="listright"><img src="img/lowerbtn2.png"><span>下拉菜单右</span></div></li>
+                <li id="10"><div id="menu"><span>功能键</span></div></li>
                 <li id="11"><div id="onetext"><span>单行文本输入</span><img src="img/inputimg1.png"></div></li>
                 <li id="12"><div id="manytext"><span>多行文本输入</span><img src="img/inputsel1.png" class="mar20"></div></li>
                 <li id="13"><div id="textlist"><span>文本显示列表</span><img src="img/文本列表.png" class="mar20"></div></li>
@@ -102,8 +102,10 @@ function imgdragstart(){return false;}
                         	<input class="ipt" id="maxlengthinp" type="text">
                         </label>
                     </div>
+                    <div class="boxbut" id="holdid">
                     <img src="img/delbtn.png" class="delbut" onClick="del()">
-                    <img src="img/delbtn1.png" alt="保存" class="delbut" onClick="holdjs()">
+                    <img src="img/quitimg2.png" alt="保存" class="delbut" onClick="holdjs()">
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,29 +117,13 @@ function imgdragstart(){return false;}
     
     </div>
 </div>
-<div class="viewDiv"></div>
+<div class="viewHtml">
+	<div class="viewDiv"></div>
+    <div class="viewxf" onClick="tc()"></div>
+</div>
+<div class="outer" onClick="tc()"></div>
 <script>
-/*$(".rigdiv").mousedown(function (event) {
-            var rWidth = $(".rigdiv").width();
-			var offset = $(this).offset();
-            _x = event.clientX - offset.left;
-            _y = event.clientY - offset.top;
-            $(".borput").mousemove(function (event) {
-                _xx = event.clientX - _x;
-                _yy = event.clientY - _y;
-				var bodyW = $("body").width();//网页宽度像素
-				var rigleft = $(".rigdiv").offset().left;//div距离浏览器左边边框宽度像素
-				var bodyleft = $(".all").offset().left;//左边空隙
-				var allwidth = $(".all").width();//内容的宽度
-				var rigwid = (bodyW-rigleft-bodyleft);
-				var s = (_xx-bodyleft);
-				var a = allwidth - s;
-				$(".rigdiv").css("width",a+"px");
-                return false;
-            });
-            return false;
-        });
-*/
+
 </script>
 <script language="javascript">
 for(i in document.images)document.images[i].ondragstart=imgdragstart;
@@ -145,3 +131,27 @@ for(i in document.images)document.images[i].ondragstart=imgdragstart;
 </body>
 </html>
 <script src="js/drag.js"></script>
+<script>
+$(document).ready(function(){
+	var json = {"Li":[{"row":1,"id":"pd1","name":"123","label":"labelstr"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"}],"Element":[{"id":"text","lid":"pd1","stamp":"1421220067096"},{"id":"selright","lid":"pd2","stamp":"1421220068515"},{"id":"selsright","lid":"pd3","stamp":"1421220070858"}]};
+	//var jsonStr = eval("("+json+")");
+	for(var i = 0; i < json["Li"].length; i++){
+		var id = json["Li"][i]["id"];//pd1
+		var cla = id.substr(2,3);//1
+		var name = json["Li"][i]["name"];
+		var label = json["Li"][i]["label"];
+		$("#rows").append("<li class='"+id+"' onclick='li("+cla+")'></li>");
+		$(".hiderig").append("<div class='"+id+"'></div>");
+		if(name!=null){
+			$(".hiderig ."+id+"").append("<div class='name'>"+name+"</div>");
+		}
+		if(label!=null){
+			$(".hiderig ."+id+"").append("<div class='label'>"+label+"</div>");
+		}
+	}
+	for(var i = 0; i < json["Element"].length; i++){
+		var id = json["Element"][i]["id"];
+		
+	}
+})
+</script>
