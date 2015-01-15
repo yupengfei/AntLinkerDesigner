@@ -139,7 +139,8 @@ function hold(){
 	}
 	con.Element = tags;
 	var json = JSON.stringify(con,100);
-	alert(json);
+//	alert(json);
+	submitjs(json);
 }
 function s(isthis){
 	var clik = "#rows li ."+isthis;//被选中元素的class

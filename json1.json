@@ -74,3 +74,187 @@
         }
     ]
 }
+
+
+{
+    "Li": [
+        {
+            "row": 1,
+            "id": "pd1"
+        },
+        {
+            "row": 2,
+            "id": "pd2"
+        },
+        {
+            "row": 3,
+            "id": "pd3"
+        },
+        {
+            "row": 4,
+            "id": "pd4"
+        },
+        {
+            "row": 5,
+            "id": "pd5"
+        },
+        {
+            "row": 6,
+            "id": "pd6"
+        },
+        {
+            "row": 7,
+            "id": "pd7"
+        },
+        {
+            "row": 8,
+            "id": "pd8"
+        },
+        {
+            "row": 9,
+            "id": "pd9"
+        },
+        {
+            "row": 10,
+            "id": "pd10"
+        },
+        {
+            "row": 11,
+            "id": "pd11"
+        }
+    ],
+    "Element": [
+        {
+            "id": "selright",
+            "lid": "pd1",
+            "stamp": "1421284137479",
+            "label": "单选右"
+        },
+        {
+            "id": "selleft",
+            "lid": "pd1",
+            "stamp": "1421284175466",
+            "label": "单选左"
+        },
+        {
+            "id": "selsleft",
+            "lid": "pd2",
+            "stamp": "1421284136578",
+            "label": "多选左"
+        },
+        {
+            "id": "text",
+            "lid": "pd2",
+            "stamp": "1421284138529",
+            "label": "纯文本"
+        },
+        {
+            "id": "selsright",
+            "lid": "pd3",
+            "stamp": "1421284135424",
+            "label": "多选右"
+        },
+        {
+            "id": "selsleft",
+            "lid": "pd3",
+            "stamp": "1421284174120",
+            "label": "多选左"
+        },
+        {
+            "id": "isopenleft",
+            "lid": "pd4",
+            "stamp": "1421284134512",
+            "label": "开关左"
+        },
+        {
+            "id": "selsright",
+            "lid": "pd4",
+            "stamp": "1421284173057",
+            "label": "多选右"
+        },
+        {
+            "id": "isopenright",
+            "lid": "pd5",
+            "stamp": "1421284133721",
+            "label": "开关右"
+        },
+        {
+            "id": "isopenleft",
+            "lid": "pd5",
+            "stamp": "1421284171322",
+            "label": "开关左"
+        },
+        {
+            "id": "listright",
+            "lid": "pd6",
+            "stamp": "1421284132764",
+            "label": "下拉菜单右"
+        },
+        {
+            "id": "isopenright",
+            "lid": "pd6",
+            "stamp": "1421284169396",
+            "label": "开关右"
+        },
+        {
+            "id": "menu",
+            "lid": "pd7",
+            "stamp": "1421284127258",
+            "label": "功能键"
+        },
+        {
+            "id": "listright",
+            "lid": "pd7",
+            "stamp": "1421284167953",
+            "label": "下拉菜单右"
+        },
+        {
+            "id": "onetext",
+            "lid": "pd8",
+            "stamp": "1421284129170",
+            "label": "单行文本输入"
+        },
+        {
+            "id": "menu",
+            "lid": "pd8",
+            "stamp": "1421284166154",
+            "label": "功能键"
+        },
+        {
+            "id": "manytext",
+            "lid": "pd9",
+            "stamp": "1421284130065",
+            "label": "多行文本输入"
+        },
+        {
+            "id": "manytext",
+            "lid": "pd9",
+            "stamp": "1421284158117",
+            "label": "多行文本输入"
+        },
+        {
+            "id": "manytext",
+            "lid": "pd10",
+            "stamp": "1421283711487",
+            "label": "多行文本输入"
+        },
+        {
+            "id": "textlist",
+            "lid": "pd11",
+            "stamp": "1421283626506",
+            "label": "文本显示列表"
+        },
+        {
+            "id": "manytext",
+            "lid": "pd11",
+            "stamp": "1421283645455",
+            "label": "多行文本输入"
+        },
+        {
+            "id": "textlist",
+            "lid": "pd11",
+            "stamp": "1421283713112",
+            "label": "文本显示列表"
+        }
+    ]
+}

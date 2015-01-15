@@ -133,11 +133,15 @@ for(i in document.images)document.images[i].ondragstart=imgdragstart;
 <script src="js/drag.js"></script>
 <script>
 $(document).ready(function(){
-	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd8"}],"Element":[{"id":"text","lid":"pd1","stamp":"1421234007223","label":"纯文本"},{"id":"manytext","lid":"pd2","stamp":"1421234016994","label":"多行文本输入"},{"id":"selsright","lid":"pd3","stamp":"1421234008594","label":"多选右"},{"id":"menu","lid":"pd3","stamp":"1421234015131","label":"功能键"},{"id":"isopenright","lid":"pd4","stamp":"1421234009643","label":"开关右"},{"id":"listleft","lid":"pd4","stamp":"1421234011251","label":"下拉菜单左"},{"id":"isopenright","lid":"pd4","stamp":"1421234012802","label":"开关右"},{"id":"menu","lid":"pd5","stamp":"1421234018596","label":"功能键"},{"id":"onetext","lid":"pd5","stamp":"1421234020197","label":"单行文本输入"},{"id":"selleft","lid":"pd6","stamp":"1421234023285","label":"单选左"},{"id":"onetext","lid":"pd6","stamp":"1421234703859","label":"单行文本输入"},{"id":"menu","lid":"pd8","stamp":"1421234702476","label":"功能键"}]};
-	//var jsonStr = eval("("+json+")");
+	//json是后台传入的json
+	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd7"},{"row":8,"id":"pd8"},{"row":9,"id":"pd9"},{"row":10,"id":"pd10"},{"row":11,"id":"pd11"}],"Element":[{"id":"text","lid":"pd1","stamp":"1421285662276","label":"纯文本"},{"id":"manytext","lid":"pd2","stamp":"1421284350720","label":"多行文本输入"},{"id":"selright","lid":"pd2","stamp":"1421285518382","label":"单选右"},{"id":"selleft","lid":"pd3","stamp":"1421285525511","label":"单选左"},{"id":"text","lid":"pd3","stamp":"1421285569747","label":"纯文本"},{"id":"isopenleft","lid":"pd4","stamp":"1421285567915","label":"开关左"},{"id":"text","lid":"pd4","stamp":"1421285659830","label":"纯文本"},{"id":"isopenright","lid":"pd5","stamp":"1421285566844","label":"开关右"},{"id":"listleft","lid":"pd6","stamp":"1421285565908","label":"下拉菜单左"},{"id":"listright","lid":"pd7","stamp":"1421285564949","label":"下拉菜单右"},{"id":"menu","lid":"pd8","stamp":"1421285563517","label":"功能键"},{"id":"menu","lid":"pd8","stamp":"1421285592373","label":"功能键"},{"id":"menu","lid":"pd8","stamp":"1421285669038","label":"功能键"},{"id":"onetext","lid":"pd9","stamp":"1421285561613","label":"单行文本输入"},{"id":"menu","lid":"pd9","stamp":"1421285591221","label":"功能键"},{"id":"menu","lid":"pd9","stamp":"1421285667318","label":"功能键"},{"id":"textlist","lid":"pd10","stamp":"1421285557848","label":"文本显示列表"},{"id":"manytext","lid":"pd10","stamp":"1421285588935","label":"多行文本输入"},{"id":"textlist","lid":"pd10","stamp":"1421285664921","label":"文本显示列表"},{"id":"textlist","lid":"pd11","stamp":"1421285559326","label":"文本显示列表"},{"id":"textlist","lid":"pd11","stamp":"1421285587640","label":"文本显示列表"},{"id":"manytext","lid":"pd11","stamp":"1421285666008","label":"多行文本输入"}]};
 	if(json["Li"]==null||json["Element"]==null){
-		return;
+	}else{
+		jsonStr(json);
 	}
-	jsonStr(json);
 })
+//提交方法
+function submitjs(json){
+	alert(json);
+}
 </script>
