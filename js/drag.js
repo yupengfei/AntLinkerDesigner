@@ -168,26 +168,77 @@ var r=null;
 								//alert(getclass);
 								if(typeof(getclass) == "undefined"){
 									$(ThatO[i]).append(tempBox.html());
-									var date = new Date().getTime()+"";
-									$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
-									$(ThatO[i]).children().last().addClass(date);
+									var date = new Date();
+									var year = date.getFullYear();
+									var month = date.getMonth()+1+"";
+									if(month.length==1){
+										month = "0" +""+ month;
+									}
+									var day = date.getDate()+"";
+									if(day.length==1){
+										day = "0"+""+day;
+									}
+									var hour = date.getHours()+"";
+									if(hour.length==1){
+										hour = "0"+""+hour;
+									}
+									var minute = date.getMinutes()+"";
+									if(minute.length==1){
+										minute = "0"+""+minute;
+									}
+									var second = date.getSeconds()+"";
+									if(second.length==1){
+										second = "0"+""+second;
+									}
+									var milliseconds = date.getMilliseconds()+"";
+									if(milliseconds.length == 1){
+										milliseconds = "000"+""+milliseconds;
+									}else if(milliseconds.length == 2){
+										milliseconds = "00"+""+milliseconds;
+									}else if(milliseconds.length == 3){
+										milliseconds = "0"+""+milliseconds;
+									}
+									var dataStr = year+month+day+hour+minute+second+milliseconds;
+									$(ThatO[i]).children().last().attr("onclick","s('"+dataStr+"')");
+									$(ThatO[i]).children().last().addClass(dataStr);
 									$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'><div class='label'>"+tempBox.text()+"</div></div>");
 								}else{
-									var getclasslength = getclass.length;
-									var date = new Date().getTime()+"";
-									var datelength = date.length;
-									if(getclasslength>datelength){
-										getclass = getclass.substr(0,getclasslength-3);
+									var date = new Date();
+									var year = date.getFullYear();
+									var month = date.getMonth()+1+"";
+									if(month.length==1){
+										month = "0" +""+ month;
 									}
-									getclasslength = getclass.length;
-									getclass = getclass.substr(getclasslength-6,getclasslength);
-									date = date.substr(datelength-6,datelength);
-									var s = date - getclass;
-									if(s>1000){
+									var day = date.getDate()+"";
+									if(day.length==1){
+										day = "0"+""+day;
+									}
+									var hour = date.getHours()+"";
+									if(hour.length==1){
+										hour = "0"+""+hour;
+									}
+									var minute = date.getMinutes()+"";
+									if(minute.length==1){
+										minute = "0"+""+minute;
+									}
+									var second = date.getSeconds()+"";
+									if(second.length==1){
+										second = "0"+""+second;
+									}
+									var milliseconds = date.getMilliseconds()+"";
+									if(milliseconds.length == 1){
+										milliseconds = "000"+""+milliseconds;
+									}else if(milliseconds.length == 2){
+										milliseconds = "00"+""+milliseconds;
+									}else if(milliseconds.length == 3){
+										milliseconds = "0"+""+milliseconds;
+									}
+									var dataStr = year+month+day+hour+minute+second+milliseconds;
+									var s = dataStr - getclass;
+									if(s>500){
 										$(ThatO[i]).append(tempBox.html());
-										var date = new Date().getTime()+"";
-										$(ThatO[i]).children().last().attr("onclick","s('"+date+"')");
-										$(ThatO[i]).children().last().addClass(date);
+										$(ThatO[i]).children().last().attr("onclick","s('"+dataStr+"')");
+										$(ThatO[i]).children().last().addClass(dataStr);
 										$(ThatO[i]).children().last().append("<div style='display:none;' class='divno'><div class='label'>"+tempBox.text()+"</div></div>");
 									}
 								}
