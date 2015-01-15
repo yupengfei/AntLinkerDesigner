@@ -56,25 +56,6 @@ function restoreli(isthis){
 		$("#nameinp").val("");
 	}
 }
-/*function hold(){
-	var lilen = $("#rows").children("li").length;
-	var div = $("#rows").children("li").children("div");
-	var divlen = $("#rows").children("li").children("div").length;
-	var model = new Object();
-	var tags = new Array();
-	for(var i = 0;i<divlen;i++){
-		tags[i] = new Array();
-	}
-	for(var i = 0; i<divlen;i++){
-		tags[i][0] = div.eq(i).attr("id");//ID
-		tags[i][1] = div.eq(i).parent().attr("class");//父id
-		tags[i][2] = div.eq(i).children().children(".size").html();
-	}
-	model.Element = tags;
-	var json = JSON.stringify(model,100);
-	alert(json);
-
-}*/
 function hold(){
 	//格式化li
 	$("#rows").children("li").css("border","1px solid #FFF");
@@ -108,6 +89,7 @@ function hold(){
 	for(var i = 0; i<divlen;i++){
 		var model = new Object();
 		model.id = div.eq(i).attr("id");//ID
+		re(div.eq(i).attr("id"),div.eq(i).parent().attr("class"),div.eq(i).attr("class"));
 		model.lid = div.eq(i).parent().attr("class");//父id
 		model.stamp = div.eq(i).attr("class");//添加时间
 		if(div.eq(i).children().children(".size").html()!=null){
@@ -141,6 +123,145 @@ function hold(){
 	var json = JSON.stringify(con,100);
 //	alert(json);
 	submitjs(json);
+}
+function re(id,lid,cla){
+	var size = $("#rows ."+lid+" ."+cla+" .divno .size").html();
+	var label = $("#rows ."+lid+" ."+cla+" .divno .label").html();
+	var name = $("#rows ."+lid+" ."+cla+" .divno .name").html();
+	var name = $("#rows ."+lid+" ."+cla+" .divno .required").html();
+	if(id=="text"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+	}
+	if(id=="selleft"||id=="selright"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+	}
+	if(id=="selsleft"||id=="selsright"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+	}
+	if(id=="isopenleft"||id=="isopenright"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+	}
+	if(id=="listleft"||id=="listright"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+	}
+	if(id=="menu"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(url==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='url'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+	}
+	if(id=="onetext"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+		if(inputtype==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='inputtype'>文本</div>");
+		}
+		if(maxlength==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='maxlength'></div>");
+		}
+	}
+	if(id=="manytext"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+		if(required==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='required'>是</div>");
+		}
+		if(maxlength==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='maxlength'></div>");
+		}
+	}
+	if(id=="textlist"){
+		if(size==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='size'>30</div>");
+		}
+		if(label==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='label'></div>");
+		}
+		if(name==null){
+			$("#rows ."+lid+" ."+cla+" .divno").append("<div class='name'></div>");
+		}
+	}
+	
+}
+function re2(){
+	
 }
 function s(isthis){
 	var clik = "#rows li ."+isthis;//被选中元素的class
@@ -274,8 +395,14 @@ $(document).ready(function(){
 function imgtacitly(isthis,classstr){
 	var varstr = $("#rows li ."+isthis+" div ."+classstr+"").html();
 	if(varstr==null){
-		$("#"+classstr+" label label img").attr("src","img/choicen.png");
-		$("#"+classstr+" label label img").last().attr("src","img/choicey.png");
+		if(classstr=="size"){
+			$("#"+classstr+" label label img").attr("src","img/choicen.png");
+			$("#"+classstr+" label label img").last().attr("src","img/choicey.png");
+		}
+		else{
+			$("#"+classstr+" label label img").attr("src","img/choicen.png");
+			$("#"+classstr+" label label img").first().attr("src","img/choicey.png");
+		}
 	}else{
 		var slen =$("#"+classstr+" label label").change("img").length;
 		for(i=0;i<slen;i++){
@@ -285,11 +412,12 @@ function imgtacitly(isthis,classstr){
 			}
 		}
 	}
+	
 }
 //重置右侧表单
 function restore(isthis){
 	imgtacitly(isthis,"size");
-	//imgtacitly(isthis,"inputtype");
+	imgtacitly(isthis,"inputtype");
 	imgtacitly(isthis,"required");
 	$("#labelinp").val($(".xz .divno .label").html());
 	$("#nameinp").val($(".xz .divno .name").html());
@@ -339,15 +467,16 @@ function srequired(str){
 	}
 }
 function sinputtype(str){
-	if($(".xz .divno .sinputtype").html()==null){
-		$(".xz .divno").append("<div class='sinputtype'></div>");
+	if($(".xz .divno .inputtype").html()==null){
+		$(".xz .divno").append("<div class='inputtype'></div>");
 	}
+	alert(str);
 	if(str == '文本'){
-		$(".xz .divno .sinputtype").html("文本");
+		$(".xz .divno .inputtype").html("文本");
 	}else if(str == '数字'){
-		$(".xz .divno .sinputtype").html("数字");
+		$(".xz .divno .inputtype").html("数字");
 	}else{
-		$(".xz .divno .sinputtype").html("日期");
+		$(".xz .divno .inputtype").html("日期");
 	}
 }
 //删除元素
@@ -405,6 +534,9 @@ function getdisplay(divId){
 	}else{
 		return false;
 	}
+}
+function texthold(){
+	holdjs();
 }
 //保存元素及元素到各项属性
 function holdjs(){
@@ -477,23 +609,6 @@ function holdjs(){
 		}
 	}
 }
-/*	var s = '{
-    "return_code": 0,
-    "return_message": "success",
-    "data": {
-        "data": [
-            {
-                "id": "1",
-                "question": "公主令牌在哪交？"
-            },
-            {
-                "id": "2",
-                "question": "公主护使有什么用？"
-            }
-        ]
-    }
-}';
-strToJson(s);*/
 //json
 function strToJson(str){
 	var jsonStr = JSON.parse(str);
@@ -507,127 +622,6 @@ function test(){
 	var json = JSON.stringify(student,100);
 	alert(json);
 }
-/*
-function test(){
-	var s = "";
-	s += "{\"data\":";
-	s += "[";
-
-
-
-	s += "{\"hang\":";
-	s += "[{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":1,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":2,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	
-	s += "		},";
-	s += "{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":3,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":4,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	
-	s += "		},";
-	s += "{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":5,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":6,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	s += "		}]";
-	s += "}],";
-	
-	
-	
-	s += "{\"hang\":";
-	s += "[{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":1,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":2,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	
-	s += "		},";
-	s += "{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":3,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":4,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	
-	s += "		},";
-	s += "{";
-	s += "	\"yuansu\":[";
-	s += "		{";
-	s += "			\"id\":5,";
-	s += "			\"name\":\"test1\"";
-	s += "		},"
-	s += "		{";
-	s += "			\"id\":6,";
-	s += "			\"name\":\"test2\"";
-	s += "		}";
-	s += "		]";
-	s += "		}]";
-	s += "}],";
-	
-	
-	
-	s += "}";
-	alert(s);
-	s = strToJson(s);
-	//alert(s["data"]["hang"][1]["yuansu"][1]["id"]);
-}*/
-
-/*$(".rigdiv").mousedown(function (event) {
-            var rWidth = $(".rigdiv").width();
-			var offset = $(this).offset();
-            _x = event.clientX - offset.left;
-            _y = event.clientY - offset.top;
-            $(".borput").mousemove(function (event) {
-                _xx = event.clientX - _x;
-                _yy = event.clientY - _y;
-				var bodyW = $("body").width();//网页宽度像素
-				var rigleft = $(".rigdiv").offset().left;//div距离浏览器左边边框宽度像素
-				var bodyleft = $(".all").offset().left;//左边空隙
-				var allwidth = $(".all").width();//内容的宽度
-				var rigwid = (bodyW-rigleft-bodyleft);
-				var s = (_xx-bodyleft);
-				var a = allwidth - s;
-				$(".rigdiv").css("width",a+"px");
-                return false;
-            });
-            return false;
-        });
-*/
 function view(){
 	var bodyhei = $(window).height();
 	var bodywid = $(window).width();

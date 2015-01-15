@@ -234,6 +234,9 @@ var r=null;
 										milliseconds = "0"+""+milliseconds;
 									}
 									var dataStr = year+month+day+hour+minute+second+milliseconds;
+									if(getclass.indexOf("xz")>0){
+										getclass = getclass.substr(0,getclass.indexOf("xz"));
+									}
 									var s = dataStr - getclass;
 									if(s>500){
 										$(ThatO[i]).append(tempBox.html());

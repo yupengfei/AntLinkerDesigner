@@ -60,25 +60,25 @@ function imgdragstart(){return false;}
                     <div class="box" id="label">
                     	<label class="item">label</label>
                         <label class="itlab">
-                        	<input class="ipt" id="labelinp" type="text">
+                        	<input class="ipt" id="labelinp" type="text" onBlur="texthold()">
                         </label>
                     </div>
                     <div class="box" id="url">
                     	<label class="item">url</label>
                         <label class="itlab">
-                        	<input class="ipt" id="urlinp" type="text">
+                        	<input class="ipt" id="urlinp" type="text" onBlur="texthold()">
                         </label>
                     </div>
                     <div class="box" id="systemid">
                     	<label class="item">systemid</label>
                         <label class="itlab">
-                        	<input class="ipt" id="systemidinp" type="text">
+                        	<input class="ipt" id="systemidinp" type="text" onBlur="texthold()">
                         </label>
                     </div>
                     <div class="box" id="name">
                     	<label class="item">name</label>
                         <label class="itlab">
-                        	<input class="ipt" id="nameinp" type="text">
+                        	<input class="ipt" id="nameinp" type="text" onBlur="texthold()">
                         </label>
                     </div>
                     <div class="box" id="required">
@@ -99,12 +99,11 @@ function imgdragstart(){return false;}
                     <div class="box" id="maxlength">
                     	<label class="item">maxlength</label>
                         <label class="itlab">
-                        	<input class="ipt" id="maxlengthinp" type="text">
+                        	<input class="ipt" id="maxlengthinp" type="text" onBlur="texthold()">
                         </label>
                     </div>
                     <div class="boxbut" id="holdid">
                     <img src="img/delbtn.png" class="delbut" onClick="del()">
-                    <img src="img/quitimg2.png" alt="保存" class="delbut" onClick="holdjs()">
                     </div>
                 </div>
             </div>
@@ -134,7 +133,7 @@ for(i in document.images)document.images[i].ondragstart=imgdragstart;
 <script>
 $(document).ready(function(){
 	//json是后台传入的json
-	var json = {};
+	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd7"}],"Element":[{"id":"text","lid":"pd1","stamp":"201501151803470419","size":"30","label":"纯文本","name":""},{"id":"selleft","lid":"pd1","stamp":"201501151803480520","size":"30","label":"单选左","name":""},{"id":"selright","lid":"pd1","stamp":"201501151803490783","size":"30","label":"单选右","name":""},{"id":"selsleft","lid":"pd2","stamp":"201501151803510556","size":"30","label":"多选左","name":""},{"id":"selsright","lid":"pd2","stamp":"201501151803520871","size":"30","label":"多选右","name":""},{"id":"isopenleft","lid":"pd2","stamp":"201501151803540532","size":"30","label":"开关左","name":""},{"id":"isopenright","lid":"pd3","stamp":"201501151803560494","size":"30","label":"开关右","name":""},{"id":"listleft","lid":"pd3","stamp":"201501151803580091","size":"30","label":"下拉菜单左","name":""},{"id":"listright","lid":"pd3","stamp":"201501151804010138","size":"30","label":"下拉菜单右","name":""},{"id":"menu","lid":"pd4","stamp":"201501151804090393","size":"30","label":"功能键","name":""},{"id":"onetext","lid":"pd4","stamp":"201501151804100718","size":"30","label":"单行文本输入","name":""},{"id":"manytext","lid":"pd4","stamp":"201501151804130905","size":"30","label":"多行文本输入","name":""},{"id":"textlist","lid":"pd5","stamp":"201501151804150417","size":"30","label":"文本显示列表","name":""}]};
 	if(json["Li"]==null||json["Element"]==null){
 		return;
 	}else{
