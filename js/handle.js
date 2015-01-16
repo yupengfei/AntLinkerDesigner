@@ -783,7 +783,7 @@ for(var i = 0; i < json["Li"].length; i++){
 		}
 		if(type=="textlist"){
 			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
-			$("#rows ."+lid+" ."+id+"").append("<img class='mar20 ir' src='img/文本列表.png'>");
+			$("#rows ."+lid+" ."+id+"").append("<img class='mar20 ir' src='img/textlist.png'>");
 		}
 	}	
 }
