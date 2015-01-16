@@ -238,7 +238,8 @@ var r=null;
 										getclass = getclass.substr(0,getclass.indexOf("xz"));
 									}
 									var s = dataStr - getclass;
-									if(s>500){
+									var le = $(ThatO[i]).children("div").length;
+									if(s>500&&le<3){
 										$(ThatO[i]).append(tempBox.html());
 										$(ThatO[i]).children().last().attr("onclick","s('"+dataStr+"')");
 										$(ThatO[i]).children().last().addClass(dataStr);
