@@ -88,10 +88,10 @@ function hold(){
 	var tags = new Array();
 	for(var i = 0; i<divlen;i++){
 		var model = new Object();
-		model.id = div.eq(i).attr("id");//ID
+		model.type = div.eq(i).attr("id");//ID
 		re(div.eq(i).attr("id"),div.eq(i).parent().attr("class"),div.eq(i).attr("class"));
 		model.lid = div.eq(i).parent().attr("class");//父id
-		model.stamp = div.eq(i).attr("class");//添加时间
+		model.id = div.eq(i).attr("class");//添加时间
 		if(div.eq(i).children().children(".size").html()!=null){
 			model.size = div.eq(i).children().children(".size").html();
 		}
@@ -381,7 +381,7 @@ function s(isthis){
 
 $(document).ready(function(){
 	//复选框操作
-	$(".iptimg").click(function(){
+	$("#required .itlab label .iptimg").click(function(){
 		var srcurl = $(this).attr("src");//得到路径地址
 		if(srcurl=="img/choicen.png"){
 			$(this).parent().siblings("label").children().attr("src","img/choicen.png");
@@ -390,6 +390,15 @@ $(document).ready(function(){
 			$(this).addClass("xzimg");
 		}
 		
+	});
+	$("#inputtype .itlab label .iptimg").click(function(){
+		var srcurl = $(this).attr("src");//得到路径地址
+		if(srcurl=="img/choicen.png"){
+			$(this).parent().siblings("label").children().attr("src","img/choicen.png");
+			$(this).parent().siblings("label").children().removeClass("xzimg");
+			$(this).attr("src","img/choicey.png");
+			$(this).addClass("xzimg");
+		}
 	});
 })
 function imgtacitly(isthis,classstr){
@@ -439,6 +448,14 @@ function ssize(width){
 		if(sibwidth==null){
 			$(".xz").animate({width:'596px'});
 			$(".xz .divno .size").html("100");
+			var imglength = $("#size .itlab label").change("img").length;
+			$("#size .itlab label img").attr("src","img/choicen.png");
+			for(var i = 0;i<imglength;i++){
+				var im = $("#size .itlab label img").eq(i).attr("onclick");
+				if(im.indexOf("100")>1){
+					$("#size .itlab label img").eq(i).attr("src","img/choicey.png");
+				}
+			}
 		}else{
 			alert("设置的宽度超过总宽度");
 		}
@@ -447,12 +464,28 @@ function ssize(width){
 		if(siblength <= 1){
 			$(".xz").animate({width:'296px'});
 			$(".xz .divno .size").html("50");
+			var imglength = $("#size .itlab label").change("img").length;
+			$("#size .itlab label img").attr("src","img/choicen.png");
+			for(var i = 0;i<imglength;i++){
+				var im = $("#size .itlab label img").eq(i).attr("onclick");
+				if(im.indexOf("50")>1){
+					$("#size .itlab label img").eq(i).attr("src","img/choicey.png");
+				}
+			}
 		}else{
 			alert("设置的宽度超过总宽度");
 		}
 	}else{
 		$(".xz").animate({width:'197px'});
 		$(".xz .divno .size").html("30");
+		var imglength = $("#size .itlab label").change("img").length;
+			$("#size .itlab label img").attr("src","img/choicen.png");
+			for(var i = 0;i<imglength;i++){
+				var im = $("#size .itlab label img").eq(i).attr("onclick");
+				if(im.indexOf("30")>1){
+					$("#size .itlab label img").eq(i).attr("src","img/choicey.png");
+				}
+			}
 	}
 }
 //设置元素是否必填
@@ -470,7 +503,6 @@ function sinputtype(str){
 	if($(".xz .divno .inputtype").html()==null){
 		$(".xz .divno").append("<div class='inputtype'></div>");
 	}
-	alert(str);
 	if(str == '文本'){
 		$(".xz .divno .inputtype").html("文本");
 	}else if(str == '数字'){
@@ -658,9 +690,9 @@ for(var i = 0; i < json["Li"].length; i++){
 	var cla = id.substr(2,id.length);//1
 	$(".lisize").html(cla);
 	for(var i = 0; i < json["Element"].length; i++){
-		var id = json["Element"][i]["id"];
+		var type = json["Element"][i]["type"];
 		var lid = json["Element"][i]["lid"];
-		var stamp = json["Element"][i]["stamp"];
+		var id = json["Element"][i]["id"];
 		var size = json["Element"][i]["size"];
 		var label = json["Element"][i]["label"];
 		var url = json["Element"][i]["url"];
@@ -669,79 +701,89 @@ for(var i = 0; i < json["Li"].length; i++){
 		var required = json["Element"][i]["required"];
 		var inputtype = json["Element"][i]["inputtype"];
 		var maxlength = json["Element"][i]["maxlength"];
-		if($("#rows ."+lid+" ."+stamp+"").html()==null){
-			$("#rows ."+lid+"").append("<div id='"+id+"' class=\'"+stamp+"\' onclick='s(\""+stamp+"\")'><span></span><div class='divno' style='display:none'></div></div>");
+		if($("#rows ."+lid+" ."+id+"").html()==null){
+			$("#rows ."+lid+"").append("<div id='"+type+"' class=\'"+id+"\' onclick='s(\""+id+"\")'><span></span><div class='divno' style='display:none'></div></div>");
 		}
 		if(size!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='size'>"+size+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='size'>"+size+"</div>");
 			if(size=="100"){
-				$("#rows ."+lid+" ."+stamp+"").css("width","596px");
+				$("#rows ."+lid+" ."+id+"").css("width","596px");
 			}
 			if(size=="50"){
-				$("#rows ."+lid+" ."+stamp+"").css("width","296px");
+				$("#rows ."+lid+" ."+id+"").css("width","296px");
 			}
 			if(size=="30"){
-				$("#rows ."+lid+" ."+stamp+"").css("width","197px");
+				$("#rows ."+lid+" ."+id+"").css("width","197px");
 			}
 		}
 		if(label!=null){
-			$("#rows ."+lid+" ."+stamp+" span").append(label);
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='label'>"+label+"</div>");
+			$("#rows ."+lid+" ."+id+" span").append(label);
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='label'>"+label+"</div>");
 		}
 		if(url!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='url'>"+url+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='url'>"+url+"</div>");
 		}
 		if(systemid!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='systemid'>"+systemid+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='systemid'>"+systemid+"</div>");
 		}
 		if(name!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='name'>"+name+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='name'>"+name+"</div>");
 		}
 		if(required!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='required'>"+required+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='required'>"+required+"</div>");
 			
 		}
 		if(inputtype!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='inputtype'>"+inputtype+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='inputtype'>"+inputtype+"</div>");
 		}
 		if(maxlength!=null){
-			$("#rows ."+lid+" ."+stamp+" .divno").append("<div class='maxlength'>"+maxlength+"</div>");
+			$("#rows ."+lid+" ."+id+" .divno").append("<div class='maxlength'>"+maxlength+"</div>");
 		}
 		//img
-		if(id=="selleft"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/choicey.png'>");
+		if(type=="selleft"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='ir' src='img/choicey.png'>");
 		}
-		if(id=="selright"){
-			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/choicey.png'>");
-		}
-		
-		if(id=="selsleft"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/choicesel.png'>");
-		}
-		if(id=="selsright"){
-			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/choicesel.png'>");
-		}
-		if(id=="isopenleft"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/longbtny.png'>");
-		}
-		if(id=="isopenright"){
-			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/parkimg.png'>");
-		}
-		if(id=="listleft"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/lowerbtn2.png'>");
-		}
-		if(id=="listright"){
-			$("#rows ."+lid+" ."+stamp+"").prepend("<img src='img/lowerbtn2.png'>");
-		}
-		if(id=="onetext"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img src='img/inputimg1.png'>");
-		}
-		if(id=="manytext"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img  class='mar20' src='img/inputsel1.png'>");
-		}
-		if(id=="textlist"){
-			$("#rows ."+lid+" ."+stamp+"").append("<img class='mar20' src='img/文本列表.png'>");
+		if(type=="selright"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sr");
+			$("#rows ."+lid+" ."+id+"").prepend("<img class='il' src='img/choicey.png'>");
 		}
 		
+		if(type=="selsleft"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='ir' src='img/choicesel.png'>");
+		}
+		if(type=="selsright"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sr");
+			$("#rows ."+lid+" ."+id+"").prepend("<img class='il' src='img/choicesel.png'>");
+		}
+		if(type=="isopenleft"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='ir' src='img/longbtny.png'>");
+		}
+		if(type=="isopenright"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sr");
+			$("#rows ."+lid+" ."+id+"").prepend("<img class='il' src='img/parkimg.png'>");
+		}
+		if(type=="listleft"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='ir' src='img/lowerbtn2.png'>");
+		}
+		if(type=="listright"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sr");
+			$("#rows ."+lid+" ."+id+"").prepend("<img class='il' src='img/lowerbtn2.png'>");
+		}
+		if(type=="onetext"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='ir' src='img/inputimg1.png'>");
+		}
+		if(type=="manytext"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='mar20 ir' src='img/inputsel1.png'>");
+		}
+		if(type=="textlist"){
+			$("#rows ."+lid+" ."+id+" span").attr("class","sl");
+			$("#rows ."+lid+" ."+id+"").append("<img class='mar20 ir' src='img/文本列表.png'>");
+		}
 	}	
 }

@@ -87,7 +87,6 @@ body *{
 	height:1170px;
 }
 .leftdiv ul li{
-	text-align:center;
 	line-height:60px;
 	height:60px;
 	border-bottom:1px solid #bcbcbc;
@@ -95,14 +94,14 @@ body *{
 .leftdiv ul li div{
 	width:260px;
 	display: table-cell;
-	text-align: center;
 }
 
 .leftdiv ul li div img{
 vertical-align: middle;
 }
 .mar20{
-	height:40px;
+	height:27px;
+	width:40px;
 }
 .condiv ul{
 	overflow:hidden;
@@ -110,7 +109,6 @@ vertical-align: middle;
 .condiv ul li{
 	height:80px;
 	line-height:80px;
-	text-align:center;
 	border:1px solid #FFF;
 	border-bottom:1px solid #C8C8C8;
 }
@@ -119,8 +117,7 @@ vertical-align: middle;
 	height:78px;
 	float:left;
 	border:1px solid #FFF;
-display: table-cell;
-text-align: center;
+	display: table-cell;
 }
 .condiv ul li div img{
 vertical-align: middle;
@@ -180,7 +177,7 @@ vertical-align: middle;
 	margin-top:30px;
 	margin-right:30px;
 }
-#tempBox{position: absolute;z-index:9999; width:258px; border:1px solid rgba(0, 0, 0, 0.65);text-align:center; line-height:60px; height:60px;}
+#tempBox{position: absolute;z-index:9999; width:258px; border:1px solid rgba(0, 0, 0, 0.65);line-height:60px; height:60px;}
 .hide{
 	display:none;
 }
@@ -242,4 +239,80 @@ vertical-align: middle;
     z-index: 999;
     opacity: 0.3;
 	display:none;
+}
+
+#rows li div .sl{
+	float:left;
+	margin-left:15px;
+}
+#rows li div .il{
+	float:left;
+	margin-left:15px;
+	margin-top:25px;
+}
+#rows li div .sr{
+	float:right;
+	margin-right:15px;
+}
+#rows li div .ir{
+	float:right;
+	margin-right:5px;
+	margin-top:25px;
+}
+.leftdiv ul li div .sl{
+	float:left;
+	margin-left:40px;
+}
+.leftdiv ul li div .sr{
+	float:right;
+	margin-right:40px;
+}
+.leftdiv ul li div .il{
+	float:left;
+	margin-left:40px;
+	margin-top:17px;
+}
+.leftdiv ul li div .ir{
+	float:right;
+	margin-right:40px;
+	margin-top:17px;
+}
+.leftdiv ul li #text,.leftdiv ul li #menu{
+	text-align:center;
+}
+#rows li #text,#rows li #menu{
+	text-align:center;
+}
+#tempBox div .il{
+	float:left;
+	margin-left:40px;
+	margin-top:17px;
+}
+#tempBox div .ir{
+	float:right;
+	margin-right:40px;
+	margin-top:17px;
+}
+#tempBox div .sr{
+	float:right;
+	margin-right:40px;
+}
+#tempBox div .sl{
+	float:left;
+	margin-left:40px;
+}
+#tempBox #text,#tempBox #menu{
+	text-align:center;
+}
+@media screen and (max-width: 1466px) {
+	.all{
+		width:1250px;
+	}
+	.rightdiv{
+		width:988px;
+	}
+	.condiv{
+		margin-left: 10px;
+		margin-top: 20px;
+	}
 }

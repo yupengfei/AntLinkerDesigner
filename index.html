@@ -24,19 +24,19 @@ function imgdragstart(){return false;}
     <div class="content">
     	<div class="leftdiv">
         	<ul class="drag grid">
-            	<li id="1"><div id="text"><span>纯文本</span></div></li>
-                <li id="2"><div id="selleft"><span>单选左</span><img src="img/choicey.png"></div></li>
-                <li id="3"><div id="selright"><img src="img/choicey.png"><span>单选右</span></div></li>
-                <li id="4"><div id="selsleft"><span>多选左</span><img src="img/choicesel.png"></div></li>
-                <li id="5"><div id="selsright"><img src="img/choicesel.png"><span>多选右</span></div></li>
-                <li id="6"><div id="isopenleft"><span>开关左</span><img src="img/longbtny.png"></div></li>
-                <li id="7"><div id="isopenright"><img src="img/parkimg.png"><span>开关右</span></div></li>
-                <li id="8"><div id="listleft"><span>下拉菜单左</span><img src="img/lowerbtn2.png"></div></li>
-                <li id="9"><div id="listright"><img src="img/lowerbtn2.png"><span>下拉菜单右</span></div></li>
-                <li id="10"><div id="menu"><span>功能键</span></div></li>
-                <li id="11"><div id="onetext"><span>单行文本输入</span><img src="img/inputimg1.png"></div></li>
-                <li id="12"><div id="manytext"><span>多行文本输入</span><img src="img/inputsel1.png" class="mar20"></div></li>
-                <li id="13"><div id="textlist"><span>文本显示列表</span><img src="img/文本列表.png" class="mar20"></div></li>
+            	<li id="1"><div id="text"><span class="c">纯文本</span></div></li>
+                <li id="2"><div id="selleft"><span class="sl">单选左</span><img class="ir" src="img/choicey.png"></div></li>
+                <li id="3"><div id="selright"><img class="il" src="img/choicey.png"><span class="sr">单选右</span></div></li>
+                <li id="4"><div id="selsleft"><span class="sl">多选左</span><img class="ir" src="img/choicesel.png"></div></li>
+                <li id="5"><div id="selsright"><img class="il" src="img/choicesel.png"><span class="sr">多选右</span></div></li>
+                <li id="6"><div id="isopenleft"><span class="sl">开关左</span><img src="img/longbtny.png" class="ir"></div></li>
+                <li id="7"><div id="isopenright"><img class="il" src="img/parkimg.png"><span class="sr">开关右</span></div></li>
+                <li id="8"><div id="listleft"><span class="sl">下拉菜单左</span><img src="img/lowerbtn2.png" class="ir"></div></li>
+                <li id="9"><div id="listright"><img class="il" src="img/lowerbtn2.png"><span class="sr">下拉菜单右</span></div></li>
+                <li id="10"><div id="menu"><span class="c">功能键</span></div></li>
+                <li id="11"><div id="onetext"><span class="sl">单行文本输入</span><img class="ir" src="img/inputimg1.png"></div></li>
+                <li id="12"><div id="manytext"><span class="sl">多行文本输入</span><img src="img/inputsel1.png" class="mar20 ir"></div></li>
+                <li id="13"><div id="textlist"><span class="sl">文本显示列表</span><img src="img/文本列表.png" class="mar20 ir"></div></li>
             </ul>
         </div>        
         <div class="rightdiv">
@@ -133,7 +133,7 @@ for(i in document.images)document.images[i].ondragstart=imgdragstart;
 <script>
 $(document).ready(function(){
 	//json是后台传入的json
-	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd7"}],"Element":[{"id":"text","lid":"pd1","stamp":"201501151803470419","size":"30","label":"纯文本","name":""},{"id":"selleft","lid":"pd1","stamp":"201501151803480520","size":"30","label":"单选左","name":""},{"id":"selright","lid":"pd1","stamp":"201501151803490783","size":"30","label":"单选右","name":""},{"id":"selsleft","lid":"pd2","stamp":"201501151803510556","size":"30","label":"多选左","name":""},{"id":"selsright","lid":"pd2","stamp":"201501151803520871","size":"30","label":"多选右","name":""},{"id":"isopenleft","lid":"pd2","stamp":"201501151803540532","size":"30","label":"开关左","name":""},{"id":"isopenright","lid":"pd3","stamp":"201501151803560494","size":"30","label":"开关右","name":""},{"id":"listleft","lid":"pd3","stamp":"201501151803580091","size":"30","label":"下拉菜单左","name":""},{"id":"listright","lid":"pd3","stamp":"201501151804010138","size":"30","label":"下拉菜单右","name":""},{"id":"menu","lid":"pd4","stamp":"201501151804090393","size":"30","label":"功能键","name":""},{"id":"onetext","lid":"pd4","stamp":"201501151804100718","size":"30","label":"单行文本输入","name":""},{"id":"manytext","lid":"pd4","stamp":"201501151804130905","size":"30","label":"多行文本输入","name":""},{"id":"textlist","lid":"pd5","stamp":"201501151804150417","size":"30","label":"文本显示列表","name":""}]};
+	var json = {"Li":[{"row":1,"id":"pd1"},{"row":2,"id":"pd2"},{"row":3,"id":"pd3"},{"row":4,"id":"pd4"},{"row":5,"id":"pd5"},{"row":6,"id":"pd6"},{"row":7,"id":"pd7"},{"row":8,"id":"pd8"},{"row":9,"id":"pd9"},{"row":10,"id":"pd10"},{"row":11,"id":"pd11"}],"Element":[{"type":"text","lid":"pd1","id":"201501161634550971","size":"30","label":"纯文本","name":""},{"type":"selleft","lid":"pd1","id":"201501161637280433","size":"30","label":"单选左","name":""},{"type":"selright","lid":"pd1","id":"201501161637290849","size":"30","label":"单选右","name":""},{"type":"text","lid":"pd2","id":"201501161636100537","size":"30","label":"纯文本","name":""},{"type":"selright","lid":"pd2","id":"201501161636110648","size":"30","label":"单选右","name":""},{"type":"selsleft","lid":"pd2","id":"201501161637310112","size":"30","label":"多选左","name":""},{"type":"selsright","lid":"pd3","id":"201501161637320356","size":"30","label":"多选右","name":""},{"type":"isopenright","lid":"pd3","id":"201501161637330800","size":"30","label":"开关右","name":""},{"type":"menu","lid":"pd3","id":"201501161637370553","size":"30","label":"功能键","name":""},{"type":"listleft","lid":"pd4","id":"201501161637350058","size":"30","label":"下拉菜单左","name":""},{"type":"listright","lid":"pd5","id":"201501161637360284","size":"30","label":"下拉菜单右","name":""},{"type":"onetext","lid":"pd6","id":"201501161637380986","size":"30","label":"单行文本输入","name":""},{"type":"manytext","lid":"pd7","id":"201501161637400515","size":"30","label":"多行文本输入","name":""},{"type":"textlist","lid":"pd10","id":"201501161637410476","size":"30","label":"文本显示列表","name":""}]};
 	if(json["Li"]==null||json["Element"]==null){
 		return;
 	}else{
